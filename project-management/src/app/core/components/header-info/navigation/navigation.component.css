@@ -1,0 +1,12 @@
+.navigation {
+  display: flex;
+  width: 30rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+a {
+  display: block;
+}
+
+/*# sourceMappingURL=navigation.component.css.map */

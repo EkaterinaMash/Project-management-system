@@ -1,0 +1,15 @@
+html {
+  font-size: 10px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 1rem;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1.6rem;
+}
+
+/*# sourceMappingURL=styles.css.map */

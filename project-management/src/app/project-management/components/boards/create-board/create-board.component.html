@@ -1,0 +1,21 @@
+<ng-container>
+  <h3>Create new board</h3>
+  <form [formGroup]="createBoardForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput value="" formControlName="title" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Owner</mat-label>
+      <input matInput value="" formControlName="owner" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Users</mat-label>
+      <input matInput value="" formControlName="users" required>
+    </mat-form-field>
+  </form>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="onCreateBoard()">Create board</button>
+  </mat-dialog-actions>
+</ng-container>

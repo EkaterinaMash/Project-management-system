@@ -1,0 +1,14 @@
+<nav>
+  <div class="navigation">
+    <a routerLink = "/main" routerLinkActive="active">Main</a>
+    <a routerLink="/board" routerLinkActive="active">Board</a>
+    <div *ngIf="(isLoggedIn$ | async) === false; else signedUp">
+      <a mat-list-item routerLink="/login">Sign up</a>
+
+    </div>
+    <ng-template #signedUp>
+      <a mat-list-item routerLink="signup">Sign up</a>
+
+    </ng-template>
+  </div>
+</nav>

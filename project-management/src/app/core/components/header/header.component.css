@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem;
+  height: 5rem;
+}
+
+/*# sourceMappingURL=header.component.css.map */
