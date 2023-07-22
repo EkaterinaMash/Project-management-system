@@ -21,6 +21,7 @@ export class ColumnService {
   }
 
   createColumn(boardId: string, body: ColumnType): Observable<ColumnType> {
+    console.log('service works');
     return this.http.post<ColumnType>(`${this.generateUrl(boardId)}/columns`, body);
   }
 }

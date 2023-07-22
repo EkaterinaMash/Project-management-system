@@ -4,14 +4,6 @@ import {GeneralState} from "../state.model";
 import {BoardsState, BoardState, SelectedBoardState} from "../board-state.model";
 import {Board} from "../board.model";
 
-/*
-export const boardsFeatureSelector = createFeatureSelector<BoardsStateState>('boards')
-export const selectors = boardsAdapter.getSelectors();
-
-export const selectAllBoards = createSelector(
-  boardsFeatureSelector,
-  selectors.selectAll
-) */
 
 export const selectBoards = createFeatureSelector<BoardType[]>('boards');
 /* export const selectListState = createFeatureSelector<string[]>('boardsList');
@@ -39,8 +31,14 @@ export const selectBoardState = (state: GeneralState) => state.selectedBoard;
 export const selectBoard = createSelector(
   selectBoardState,
   (state: SelectedBoardState) => {
-    console.log(0, state.selectedBoard);
     return state.selectedBoard
+  }
+);
+
+export const selectColumn = createSelector(
+  selectBoardState,
+  (state: SelectedBoardState) => {
+    return state.selectedBoard?.columns
   }
 );
 /*
@@ -52,11 +50,7 @@ export const selectBoardId = createSelector(
   }
 );*/
 
-//export const selectBoard = (state: SelectedBoardState) => state.selectedBoard;
-export const selectBoardItem = createSelector(
-  selectBoard,
-  (state: BoardState) => {console.log(19, state); return state}
-)
+
 
 
 

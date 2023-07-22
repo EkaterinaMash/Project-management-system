@@ -17,6 +17,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { CreateColumnComponent } from './components/columns/create-column/create-column.component';
 import { OpenBoardComponent } from './components/boards/open-board/open-board.component';
 import { BoardComponent } from './components/boards/board/board.component';
+import { ColumnsPageComponent } from './pages/columns-page/columns-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BoardComponent } from './components/boards/board/board.component';
     CreateColumnComponent,
     OpenBoardComponent,
     BoardComponent,
+    ColumnsPageComponent,
   ],
   imports: [
     CommonModule,

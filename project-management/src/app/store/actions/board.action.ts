@@ -1,6 +1,7 @@
 import {createAction, createActionGroup, props} from '@ngrx/store';
 import {BoardType} from "../../shared/types/board-type.model";
 import {BoardItem} from "../board.model";
+import {ColumnType} from "../../shared/types/column-type.model";
 
 export const BoardsActions = createActionGroup({
   source: 'Boards',
@@ -34,6 +35,14 @@ export const getSelectedBoardByIdSuccess = createAction(
 );
 export const getSelectedBoardByIdError = createAction(
   '[Selected board effect] get board by id error', props<{error: Error}>()
+)
+
+export const setSelectedBoardColumn = createAction(
+  '[Selected board] set selected board column', props<{column: ColumnType}>()
+);
+
+export const setBoardColumn = createAction(
+  '[Selected board] set board column', props<{column: ColumnType}>()
 )
 
 export const getBoardItem = createAction('[Board] get board item');

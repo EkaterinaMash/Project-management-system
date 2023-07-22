@@ -8,3 +8,5 @@ export interface BoardType {
   description?: string,
   columns?: ColumnType[]
 }
+
+

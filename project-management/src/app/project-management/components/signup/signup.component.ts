@@ -15,12 +15,7 @@ import {group} from "@angular/animations";
 })
 export class SignupComponent implements OnInit{
   errorMessage: Observable<string | null>;
-  //createAuthForm!: FormGroup
-  createAuthForm: RegisterForm = {
-    name: '',
-    login: '',
-    password: '',
-  };
+  createAuthForm!: FormGroup
 
   constructor(private readonly store: Store<AuthState>,
               private fb: FormBuilder) {
@@ -28,18 +23,18 @@ export class SignupComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    /*
+
     this.createAuthForm =this.fb.group({
       name: ['', [Validators.required]],
       login: ['', [Validators.required]],
       password: [[], [Validators.required]],
-    })*/
+    })
   }
 
   onSubmit(): void {
-    if (this.createAuthForm) {
+    if (this.createAuthForm?.valid) {
       console.log('signup');
-      this.store.dispatch(register({ data: this.createAuthForm }));
+      this.store.dispatch(register({ data: this.createAuthForm.value }));
     }
   }
 }

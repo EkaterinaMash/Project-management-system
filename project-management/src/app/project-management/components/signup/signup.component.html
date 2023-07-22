@@ -1,15 +1,15 @@
-<form name="createAuthForm" action="" (ngSubmit)="onSubmit()">
+<form [formGroup]="createAuthForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Name</mat-label>
-    <input matInput name="name" [(ngModel)]="createAuthForm.name" #name="ngModel" required>
+    <input matInput name="name" formControlName="name" required>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Login</mat-label>
-    <input matInput name="login" [(ngModel)]="createAuthForm.login" #login="ngModel" required>
+    <input matInput name="login" formControlName="login" required>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput name="password" [(ngModel)]="createAuthForm.password" #password="ngModel" required>
+    <input matInput name="password" formControlName="password" required>
   </mat-form-field>
   <button>Sign up</button>
 </form>

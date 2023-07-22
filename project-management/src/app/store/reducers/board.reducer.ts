@@ -3,8 +3,8 @@ import {
   BoardsActions,
   BoardsApiActions,
   getBoardItem,
-  getSelectedBoardById, getSelectedBoardByIdError, getSelectedBoardByIdSuccess,
-  setSelectedBoard
+  getSelectedBoardById, getSelectedBoardByIdError, getSelectedBoardByIdSuccess, setBoardColumn,
+  setSelectedBoard, setSelectedBoardColumn
 } from "../actions/board.action";
 import {
   initialBoardsState,
@@ -19,6 +19,19 @@ export const boardsReduceraaaa = createReducer(
   on(BoardsApiActions.getBoardList, (state, {boards}) => {
     return boards;
   }),
+  on(setSelectedBoardColumn, (state, {column}) => {
+    console.log('set column');
+    const clone = JSON.parse(JSON.stringify(state));
+    if (!clone.selectedBoard.columns) clone.selectedBoard.columns = [];
+    clone.selectedBoard.columns.push(column);
+    return {
+      ...clone,
+      selectedBoard: {
+        ...clone.selectedBoard,
+        ...clone.selectedBoard.columns
+      }
+    }
+  })
 )
 
 export const boardItemReducer = createReducer(
@@ -44,7 +57,8 @@ export const selectedBoardReducer = createReducer(
   }),
   on(getSelectedBoardByIdError, (state, {error}) => {
     return {...state, error}
-  })
+  }),
+
 )
 
 export const boardAddReducer = createReducer(
@@ -59,6 +73,20 @@ export const boardAddReducer = createReducer(
   }),
   on(getBoardItem, (state) => {
     return {...state}
+  }),
+  on(setBoardColumn, (state, {column}) => {
+    console.log('reducer works');
+    const clone = JSON.parse(JSON.stringify(state));
+    if (clone.boards) {
+      clone.boards.forEach(board => {
+        if (board._id === column.boardId) {
+          if (!board.columns) board.columns = [];
+          board.columns.push(column);
+        }
+      });
+    }
+    console.log(13, state);
+    return clone;
   })
 )
 
