@@ -2,8 +2,10 @@
   <app-language-toggle></app-language-toggle>
   <app-navigation></app-navigation>
   <div>
-    <app-sign-up></app-sign-up>
-    <app-log-in></app-log-in>
+    <app-sign-up *ngIf="!checkUserLogged()"></app-sign-up>
+    <app-log-in *ngIf="!checkUserLogged()"></app-log-in>
+    <app-edit-user *ngIf="checkUserLogged()"></app-edit-user>
+    <app-log-out *ngIf="checkUserLogged()"></app-log-out>
   </div>
 </div>
 

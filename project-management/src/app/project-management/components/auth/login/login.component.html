@@ -1,8 +1,4 @@
-<form [formGroup]="createAuthForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput name="name" formControlName="name" required>
-  </mat-form-field>
+<form [formGroup]="loginForm" (ngSubmit)="logIn()">
   <mat-form-field>
     <mat-label>Login</mat-label>
     <input matInput name="login" formControlName="login" required>
@@ -11,5 +7,5 @@
     <mat-label>Password</mat-label>
     <input matInput name="password" formControlName="password" required>
   </mat-form-field>
-  <button type="submit" mat-button>Sign up</button>
+  <button type="submit" mat-button>Log in</button>
 </form>

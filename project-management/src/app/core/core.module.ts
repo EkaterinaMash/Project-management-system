@@ -12,6 +12,8 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 import { NavigationComponent } from './components/header-info/navigation/navigation.component';
 import {RouterModule} from "@angular/router";
 import {MatListModule} from "@angular/material/list";
+import { EditUserComponent } from './components/header-info/edit-user/edit-user.component';
+import { LogOutComponent } from './components/header-info/log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {MatListModule} from "@angular/material/list";
     LogInComponent,
     AuthorComponent,
     CourseComponent,
-    NavigationComponent
+    NavigationComponent,
+    EditUserComponent,
+    LogOutComponent
   ],
   exports: [
     HeaderComponent,

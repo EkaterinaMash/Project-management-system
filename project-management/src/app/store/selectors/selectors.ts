@@ -3,6 +3,7 @@ import {BoardType} from "../../shared/types/board-type.model";
 import {GeneralState} from "../state.model";
 import {BoardsState, BoardState, SelectedBoardState} from "../board-state.model";
 import {Board} from "../board.model";
+import {UserState} from "../users-state.model";
 
 
 export const selectBoards = createFeatureSelector<BoardType[]>('boards');
@@ -27,6 +28,7 @@ export const getSelectedBoardId = createSelector(
 
 //export const selectBoards =(state: GeneralState) => state.boards.boards;
 export const selectBoardState = (state: GeneralState) => state.selectedBoard;
+export const selectUsersState = (state: GeneralState) => state.users;
 
 export const selectBoard = createSelector(
   selectBoardState,
@@ -41,14 +43,13 @@ export const selectColumn = createSelector(
     return state.selectedBoard?.columns
   }
 );
-/*
-export const selectBoardId = createSelector(
-  selectBoardState,
-  (state: SelectedBoardState) => {
-    console.log(10);
-    return state.selectedBoardId
+
+export const selectUser = createSelector(
+  selectUsersState,
+  (state: UserState) => {
   }
-);*/
+)
+
 
 
 
