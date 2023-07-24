@@ -1,15 +1,28 @@
-<form [formGroup]="createAuthForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="authForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Name</mat-label>
-    <input matInput name="name" formControlName="name" required>
+    <input matInput name="name" formControlName="name">
   </mat-form-field>
+  <mat-error *ngIf="authForm.get('name').hasError('minlength') ||
+                    authForm.get('name').hasError('maxlength')">
+    The name length should be 5-15 letters
+  </mat-error>
   <mat-form-field>
     <mat-label>Login</mat-label>
-    <input matInput name="login" formControlName="login" required>
+    <input matInput name="login" formControlName="login">
+    <mat-error *ngIf="authForm.get('login').hasError('minlength') ||
+                      authForm.get('login').hasError('maxlength')">
+      The login length should be 5-15 letters
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput name="password" formControlName="password" required>
+    <input matInput name="password" formControlName="password" type="password">
+    <mat-error *ngIf="authForm.get('password').hasError('minlength') ||
+                      authForm.get('password').hasError('maxlength')">
+      The password length should be 7-15 letters
+    </mat-error>
   </mat-form-field>
-  <button type="submit" mat-button>Sign up</button>
+  <button type="submit" mat-button [disabled]="authForm.invalid">Sign up</button>
 </form>
+

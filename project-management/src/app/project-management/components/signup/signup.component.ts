@@ -13,7 +13,7 @@ import {GeneralState} from "../../../store/state.model";
 })
 export class SignupComponent implements OnInit {
   errorMessage: Observable<string | null>;
-  createAuthForm!: FormGroup
+  authForm!: FormGroup
 
   constructor(private readonly store: Store<GeneralState>,
               private fb: FormBuilder,
@@ -22,24 +22,27 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.createAuthForm = this.fb.group({
-      name: ['', [Validators.required]],
-      login: ['', [Validators.required]],
-      password: [[], [Validators.required]],
+    this.authForm = this.fb.group({
+      name: ['',
+        [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+      login: ['',
+        [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+      password: ['',
+        [Validators.required, Validators.minLength(7), Validators.maxLength(15)]],
     })
   }
 
   onSubmit(): void {
-    if (this.createAuthForm?.valid) {
+    if (this.authForm?.valid) {
       this.authService
-        .register(this.createAuthForm.value)
+        .register(this.authForm.value)
         .subscribe((response) => {
           if (response) {
-            this.createAuthForm.reset();
+            this.authForm.reset();
             this.router.navigate(['login']);
           }
         })
     }
   }
+
 }

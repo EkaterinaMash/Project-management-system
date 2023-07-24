@@ -5,7 +5,7 @@ import {select, Store} from "@ngrx/store";
 import {UserType} from "../../../../shared/types/user-type.model";
 import {getUsers} from "../../../../store/actions/users.actions";
 import {selectUsers} from "../../../../store/selectors/selectors";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../shared/services/user.service";
 import {Router} from "@angular/router";
 import {ModalComponent} from "../../../../shared/components/modal/modal.component";
@@ -44,9 +44,12 @@ export class EditProfileComponent implements OnInit {
       this.userId = this.user._id;
 
       this.editForm = this.fb.group({
-        name: [''],
-        login: [''],
-        password: ['']
+        name: ['',
+          [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+        login: ['',
+          [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+        password: ['',
+          [Validators.required, Validators.minLength(7), Validators.maxLength(15)]]
       })
     }
   }
@@ -56,8 +59,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   saveChanges() {
-    this.userService
-      .updateUser(this.userId, this.editForm.value).subscribe();
+    this.userService.updateUser(this.userId, this.editForm.value).subscribe();
     localStorage.removeItem('userLogin');
     localStorage.setItem('userLogin', this.editForm.value.login);
   }
@@ -70,7 +72,8 @@ export class EditProfileComponent implements OnInit {
       this.delete = result.data;
       if (this.delete) {
         this.authService.logout();
-        this.userService.deleteUser(this.user._id).subscribe()}
+        this.userService.deleteUser(this.user._id).subscribe()
+      }
     })
   }
 }

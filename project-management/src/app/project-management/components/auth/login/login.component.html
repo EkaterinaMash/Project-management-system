@@ -1,11 +1,19 @@
 <form [formGroup]="loginForm">
   <mat-form-field>
     <mat-label>Login</mat-label>
-    <input matInput name="login" formControlName="login" required>
+    <input matInput name="login" formControlName="login">
+    <mat-error *ngIf="loginForm.get('login').hasError('minlength') ||
+                      loginForm.get('login').hasError('maxlength')">
+      The login length should be 5-15 letters
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput name="password" formControlName="password" required>
+    <input matInput name="password" formControlName="password" type="password">
+    <mat-error *ngIf=
+                 "loginForm.get('password').hasError('minlength') ||loginForm.get('password').hasError('maxlength')">
+      The password length should be 7-15 letters
+    </mat-error>
   </mat-form-field>
   <button type="submit" mat-button (click)="logIn()">Log in</button>
 </form>

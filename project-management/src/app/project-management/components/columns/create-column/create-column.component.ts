@@ -40,7 +40,8 @@ export class CreateColumnComponent implements OnInit {
     this.generateColumnOrder();
 
     this.createColumnForm = this.fb.group({
-      title: ['', [Validators.required]],
+      title: ['',
+        [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
       order: [this.columnOrder]
     })
   }

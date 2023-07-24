@@ -3,7 +3,12 @@
   <form [formGroup]="createColumnForm" *ngIf="!created">
     <mat-form-field>
       <mat-label>Title</mat-label>
-      <input matInput formControlName="title" required>
+      <input matInput formControlName="title">
+      <mat-error
+        *ngIf="createColumnForm.get('title').hasError('minlength') ||
+               createColumnForm.get('title').hasError('maxlength')">
+        The title length should be from 5 to 30 letters.
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="cdk-visually-hidden">
       <mat-label>Order</mat-label>

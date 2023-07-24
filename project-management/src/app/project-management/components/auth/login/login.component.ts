@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../shared/services/auth.service";
 import {Router} from "@angular/router";
 import {GeneralState} from "../../../../store/state.model";
@@ -27,17 +27,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group(
       {
-        login: [''],
-        password: ['']
+        login: ['',
+          [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+        password: ['',
+          [Validators.required, Validators.minLength(7), Validators.maxLength(15)]]
       }
     )
   }
 
   logIn() {
     this.authService.login(this.loginForm.value);
-   // this.authService.getUsers().subscribe(users => {this.users = users});
     this.router.navigate(['board']);
-
   }
-
 }

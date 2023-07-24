@@ -22,10 +22,10 @@ export class CreateBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.createBoardForm =this.fb.group({
-      title: ['', [Validators.required]],
+      title: ['',
+        [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
       owner: ['', [Validators.required]],
       users: [[], [Validators.required]],
-      //description: ['', [Validators.required]],
     })
   }
 

@@ -4,6 +4,11 @@
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input matInput value="" formControlName="title" required>
+      <mat-error
+        *ngIf="createBoardForm.get('title').hasError('minlength') ||
+               createBoardForm.get('title').hasError('maxlength')">
+        The title length should be from 5 to 30 letters.
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Owner</mat-label>
