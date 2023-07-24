@@ -13,6 +13,7 @@ import {BoardsActions} from "../../../../store/actions/board.action";
 })
 export class CreateBoardComponent implements OnInit {
   createBoardForm!: FormGroup;
+  created: boolean = false;
 
   constructor(private fb: FormBuilder,
               private boardService: BoardService,
@@ -34,8 +35,8 @@ export class CreateBoardComponent implements OnInit {
         .createBoard(this.createBoardForm.value)
         .subscribe((data: BoardType) => {
           this.store.dispatch(BoardsActions.addBoard({board: data as BoardType}));
+          this.created = true;
         });
-
     }
   }
 

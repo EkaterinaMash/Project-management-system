@@ -12,17 +12,15 @@ export class ColumnService {
 
   constructor(private http: HttpClient) { }
 
-  generateUrl(boardId: string): string {
-    return `${this.url}/${boardId}`;
-  }
-
   getColumns(boardId: string): Observable<ColumnType[]> {
-    console.log(`${this.generateUrl(boardId)}/columns`);
-    return this.http.get<ColumnType[]>(`${this.generateUrl(boardId)}/columns`);
+    return this.http.get<ColumnType[]>(`${this.url}/${boardId}/columns`);
   }
 
   createColumn(boardId: string, body: ColumnType): Observable<ColumnType> {
-    console.log('service works');
-    return this.http.post<ColumnType>(`${this.generateUrl(boardId)}/columns`, body);
+    return this.http.post<ColumnType>(`${this.url}/${boardId}/columns`, body);
+  }
+
+  deleteColumn(boardId: string, columnId: string) {
+
   }
 }

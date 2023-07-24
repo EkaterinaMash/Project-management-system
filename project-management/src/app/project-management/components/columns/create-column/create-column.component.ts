@@ -19,9 +19,10 @@ export class CreateColumnComponent implements OnInit {
 
   columns: ColumnType[] | undefined;
   columnOrder: number;
-  selectedBoard: BoardType | undefined
-  selectedBoardId: string | undefined
-  columnData: ColumnData | undefined
+  selectedBoard: BoardType | undefined;
+  selectedBoardId: string | undefined;
+  columnData: ColumnData | undefined;
+  created: boolean = false;
 
   constructor(private fb: FormBuilder,
               private columnService: ColumnService,
@@ -57,6 +58,7 @@ export class CreateColumnComponent implements OnInit {
           this.store.dispatch(setSelectedBoardColumn({column: column as ColumnType}))
         })
     }
+    this.created = true;
   }
 
   generateColumnOrder() {

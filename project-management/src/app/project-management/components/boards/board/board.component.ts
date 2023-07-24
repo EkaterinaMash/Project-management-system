@@ -6,6 +6,9 @@ import {Router} from "@angular/router";
 import {selectBoard} from "../../../../store/selectors/selectors";
 import {BoardService} from "../../../../shared/services/board.service";
 import {take} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {CreateColumnComponent} from "../../columns/create-column/create-column.component";
 
 @Component({
   selector: 'app-board',
@@ -14,9 +17,12 @@ import {take} from "rxjs";
 })
 export class BoardComponent implements OnInit{
   board: BoardType | undefined
+  delete: boolean = false;
+
   constructor(private store: Store<GeneralState>,
               private router: Router,
-              private boardService: BoardService) {
+              private boardService: BoardService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -30,10 +36,19 @@ export class BoardComponent implements OnInit{
   }
 
   deleteBoard() {
-    this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe()
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: {title: this.board.title, item: 'board'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.delete = result.data;
+      if (this.delete) this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe()});
   }
 
   createColumn() {
+    this.dialog.open(CreateColumnComponent, {
+      width: '300px',
+      height: '300px'
+    })
     this.router.navigate(['columns'])
   }
 

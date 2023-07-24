@@ -1,5 +1,6 @@
 <app-boards-list [boards]="(boards$ | async)!"></app-boards-list>
-<app-create-board></app-create-board>
-<!--<app-boards-collection [boardsCollection]="(boardsCollection$ | async)!"></app-boards-collection>-->
+<!--<app-create-board></app-create-board>-->
+<button mat-button (click)="openBoardForm()">Create new board</button>
+
 
 

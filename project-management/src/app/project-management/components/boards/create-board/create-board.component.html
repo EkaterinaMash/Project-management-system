@@ -1,6 +1,6 @@
 <ng-container>
   <h3>Create new board</h3>
-  <form [formGroup]="createBoardForm">
+  <form [formGroup]="createBoardForm" *ngIf="!created">
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input matInput value="" formControlName="title" required>
@@ -14,8 +14,10 @@
       <input matInput value="" formControlName="users" required>
     </mat-form-field>
   </form>
+  <p *ngIf="created">New board created!</p>
 
   <mat-dialog-actions>
-    <button mat-button (click)="onCreateBoard()">Create board</button>
+    <button mat-button (click)="onCreateBoard()" *ngIf="!created">Create board</button>
+    <button mat-button mat-dialog-close>Close</button>
   </mat-dialog-actions>
 </ng-container>
