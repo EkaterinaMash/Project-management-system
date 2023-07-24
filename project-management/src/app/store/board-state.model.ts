@@ -1,11 +1,13 @@
 import {BoardType} from "../shared/types/board-type.model";
+import {ColumnType} from "../shared/types/column-type.model";
 
 export interface BoardState {
   id: string,
   title: string,
   owner: string,
   users: any[],
-  description: string
+  description: string,
+  columns: ColumnType[]
 }
 
 export const initialBoardState: BoardState = {
@@ -13,7 +15,8 @@ export const initialBoardState: BoardState = {
   title: '',
   owner: '',
   users: [],
-  description: ''
+  description: '',
+  columns: []
 }
 
 export interface BoardsState {
@@ -37,3 +40,4 @@ export const initialSelectedBoardState: SelectedBoardState = {
   selectedBoardId: ''
 }
 
+export const initialColumnsState: ColumnType[] = [];

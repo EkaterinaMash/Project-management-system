@@ -13,12 +13,14 @@ import {MatCardModule} from "@angular/material/card";
 import {MatDialogModule} from "@angular/material/dialog";
 import {BoardsListComponent} from './components/boards/boards-list/boards-list.component';
 import {ColumnItemComponent} from './components/columns/column-item/column-item.component';
+import {ColumnsListComponent} from "./components/columns/columns-list/columns-list.component";
 import { SignupComponent } from './components/signup/signup.component';
 import { CreateColumnComponent } from './components/columns/create-column/create-column.component';
 import { OpenBoardComponent } from './components/boards/open-board/open-board.component';
 import { BoardComponent } from './components/boards/board/board.component';
 import { ColumnsPageComponent } from './pages/columns-page/columns-page.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { EditProfileComponent } from './components/auth/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { LoginComponent } from './components/auth/login/login.component';
     CreateBoardComponent,
     BoardsListComponent,
     ColumnItemComponent,
+    ColumnsListComponent,
     SignupComponent,
     CreateColumnComponent,
     OpenBoardComponent,
     BoardComponent,
     ColumnsPageComponent,
     LoginComponent,
+    EditProfileComponent,
   ],
   imports: [
     CommonModule,

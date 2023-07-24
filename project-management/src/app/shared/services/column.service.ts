@@ -17,6 +17,7 @@ export class ColumnService {
   }
 
   getColumns(boardId: string): Observable<ColumnType[]> {
+    console.log(`${this.generateUrl(boardId)}/columns`);
     return this.http.get<ColumnType[]>(`${this.generateUrl(boardId)}/columns`);
   }
 

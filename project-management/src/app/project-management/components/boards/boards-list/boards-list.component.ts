@@ -4,9 +4,9 @@ import {GeneralState} from "../../../../store/state.model";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {selectBoards} from "../../../../store/selectors/selectors";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {BoardService} from "../../../../shared/services/board.service";
-import {BoardsApiActions} from "../../../../store/actions/board.action";
+import {BoardsApiActions, getBoards} from "../../../../store/actions/board.action";
 
 @Component({
   selector: 'app-boards-list',
@@ -15,7 +15,7 @@ import {BoardsApiActions} from "../../../../store/actions/board.action";
 })
 export class BoardsListComponent implements OnInit{
   @Input() boards: BoardType[] = [];
-  boards$: Observable<BoardType[] | undefined> = this.store.select(selectBoards);
+//  boards$: Observable<BoardType[] | undefined> = this.store.select(selectBoards);
 
   constructor(
     private boardService: BoardService,
@@ -28,5 +28,6 @@ export class BoardsListComponent implements OnInit{
       .subscribe((boards) => {
         this.store.dispatch(BoardsApiActions.getBoardList({boards}))
       });
+    console.log(this.boards);
   }
 }

@@ -1,4 +1,4 @@
-import {createActionGroup, props} from "@ngrx/store";
+import {createAction, createActionGroup, props} from "@ngrx/store";
 import {ColumnType} from "../../shared/types/column-type.model";
 
 export const ColumnsActions = createActionGroup({
@@ -15,3 +15,6 @@ export const ColumnsApiActions = createActionGroup({
     'Get Columns List': props<{ columns: ColumnType[] }>(),
   },
 });
+
+export const getColumns = createAction(
+  '[Selected board] get columns', props< {columns: ColumnType[]}>());
