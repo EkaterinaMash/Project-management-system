@@ -1,11 +1,18 @@
 import {createReducer, on} from "@ngrx/store";
-import {initialColumnsState} from "../board-state.model";
-import {getColumns} from "../actions/column.actions";
+import {initialColumnsState, initialSelectedColumnState} from "../column-state.model";
+import {getColumns, setSelectedColumn} from "../actions/column.actions";
 
 export const columnsReducer = createReducer(
   initialColumnsState,
   on(getColumns, (state, {columns}) => {
-    console.log(columns, state);
     return columns;
   })
 )
+/*
+export const selectedColumnReducer = createReducer(
+  initialSelectedColumnState,
+  on(setSelectedColumn, (state, {selectedColumn}) => ({
+    ...state,
+    selectedColumn: selectedColumn
+  }))
+)*/

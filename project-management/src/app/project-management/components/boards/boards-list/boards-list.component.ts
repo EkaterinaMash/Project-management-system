@@ -15,7 +15,6 @@ import {BoardsApiActions, getBoards} from "../../../../store/actions/board.actio
 })
 export class BoardsListComponent implements OnInit{
   @Input() boards: BoardType[] = [];
-//  boards$: Observable<BoardType[] | undefined> = this.store.select(selectBoards);
 
   constructor(
     private boardService: BoardService,
@@ -28,6 +27,5 @@ export class BoardsListComponent implements OnInit{
       .subscribe((boards) => {
         this.store.dispatch(BoardsApiActions.getBoardList({boards}))
       });
-    console.log(this.boards);
   }
 }

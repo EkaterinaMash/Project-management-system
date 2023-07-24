@@ -1,5 +1,5 @@
 export interface ColumnType {
-  id?: string,
+  _id?: string,
   boardId: string,
   title: string,
   order: number,
@@ -7,5 +7,5 @@ export interface ColumnType {
 
 export interface ColumnData {
   column: ColumnType,
-  id: string
+  _id: string
 }

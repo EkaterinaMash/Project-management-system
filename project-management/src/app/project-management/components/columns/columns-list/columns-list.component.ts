@@ -28,6 +28,7 @@ export class ColumnsListComponent implements OnInit {
       .subscribe((columns) => {
         this.store.dispatch(getColumns({columns}));
         this.recieveColumns();
+        console.log(this.columns);
       });
   }
 

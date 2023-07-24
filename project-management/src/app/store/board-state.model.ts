@@ -40,4 +40,4 @@ export const initialSelectedBoardState: SelectedBoardState = {
   selectedBoardId: ''
 }
 
-export const initialColumnsState: ColumnType[] = [];
+

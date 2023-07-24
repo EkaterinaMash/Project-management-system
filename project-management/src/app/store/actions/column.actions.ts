@@ -18,3 +18,5 @@ export const ColumnsApiActions = createActionGroup({
 
 export const getColumns = createAction(
   '[Selected board] get columns', props< {columns: ColumnType[]}>());
+export const setSelectedColumn = createAction(
+  '[Selected board] set selected column', props<{selectedColumn: ColumnType}>());

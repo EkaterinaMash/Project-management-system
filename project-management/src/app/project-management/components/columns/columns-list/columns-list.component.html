@@ -1,7 +1,10 @@
-<ul>
-  <li *ngFor="let column of columns">
-    <p>{{column.title}}</p>
-    <button mat-button>Create task</button>
-  </li>
-</ul>
+<ng-container>
+  <div>
+    <app-column-item *ngFor="let column of columns" [column]="column">
+    </app-column-item>
+  </div>
+</ng-container>
+
+
+
 

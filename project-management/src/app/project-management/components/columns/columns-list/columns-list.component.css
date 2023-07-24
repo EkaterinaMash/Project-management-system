@@ -1,4 +1,4 @@
-ul {
+div {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -6,8 +6,7 @@ ul {
   gap: 1.5rem;
 }
 
-li {
-  list-style: none;
+app-column-item {
   text-align: center;
 }
 

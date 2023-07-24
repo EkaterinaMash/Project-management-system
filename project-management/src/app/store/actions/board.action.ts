@@ -45,4 +45,4 @@ export const setBoardColumn = createAction(
   '[Selected board] set board column', props<{column: ColumnType}>()
 )
 
-export const getBoardItem = createAction('[Board] get board item');
+
