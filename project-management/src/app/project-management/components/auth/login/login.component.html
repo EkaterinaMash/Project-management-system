@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="logIn()">
+<form [formGroup]="loginForm">
   <mat-form-field>
     <mat-label>Login</mat-label>
     <input matInput name="login" formControlName="login" required>
@@ -7,5 +7,5 @@
     <mat-label>Password</mat-label>
     <input matInput name="password" formControlName="password" required>
   </mat-form-field>
-  <button type="submit" mat-button>Log in</button>
+  <button type="submit" mat-button (click)="logIn()">Log in</button>
 </form>

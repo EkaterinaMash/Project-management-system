@@ -27,6 +27,7 @@ export class AuthService {
   }
 
   login(user: UserType) {
+    console.log(user);
     return this.http
       .post<any>(`${this.url}/signin`, user)
       .subscribe(res => {
@@ -34,6 +35,7 @@ export class AuthService {
         this.tokenExpireTime = this.decodedToken.exp;
         localStorage.setItem('token', res.token);
         localStorage.setItem('expireTime', this.tokenExpireTime);
+        localStorage.setItem('userLogin', user.login);
 
         setTimeout(() => {
           this.logout();
@@ -44,6 +46,8 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('expireTime');
+    localStorage.removeItem('userLogin');
   }
 
   register(user: UserType): Observable<any> {

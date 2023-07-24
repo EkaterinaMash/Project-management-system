@@ -1,0 +1,23 @@
+<ng-container>
+<mat-card *ngIf="!editMode">
+  <mat-card-title>Profile information</mat-card-title>
+  <mat-card-content>Name: <span>{{this.user.name}}</span></mat-card-content>
+  <button mat-button (click)="editProfile()">Edit</button>
+</mat-card>
+
+<form action="" [formGroup]="editForm" *ngIf="editMode">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Login</mat-label>
+    <input matInput formControlName="login">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password">
+  </mat-form-field>
+</form>
+  <button mat-button (click)="saveChanges()">Save changes</button>
+</ng-container>

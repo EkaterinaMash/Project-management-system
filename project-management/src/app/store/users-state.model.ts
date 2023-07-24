@@ -6,7 +6,7 @@ export interface UserState {
 
 export const initialUsersState: UserState = {
   users: undefined
-}
+};
 
 export interface SelectedUserState {
   user: UserType | undefined

@@ -1,7 +1,7 @@
 import {createReducer, on} from "@ngrx/store";
 import {initialSelectedUserState, initialUsersState} from "../users-state.model";
 import {getUsers, setSelectedUser, setUser} from "../actions/users.actions";
-
+/*
 export const UserReducer = createReducer(
 initialUsersState,
   on(setUser, (state, {user}) => {
@@ -12,7 +12,7 @@ initialUsersState,
       users: [...clone.users, user],
     };
   }),
-  on(getUsers, state => state.users)
+//  on(getUsers, state => state.users)
 )
 
 export const SelectedUserReducer = createReducer(
@@ -21,6 +21,17 @@ export const SelectedUserReducer = createReducer(
     return {
       ...state,
       selectedUser: selectedUser
+    }
+  })
+)*/
+
+export const usersReducer = createReducer(
+  initialUsersState,
+  on(getUsers, (state, {users}) => {
+    console.log(users);
+    return {
+      ...state,
+      users: users
     }
   })
 )

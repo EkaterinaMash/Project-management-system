@@ -35,8 +35,9 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     this.authService.login(this.loginForm.value);
-    this.authService.getUsers().subscribe(users => {this.users = users});
+   // this.authService.getUsers().subscribe(users => {this.users = users});
     this.router.navigate(['board']);
+
   }
 
 }
