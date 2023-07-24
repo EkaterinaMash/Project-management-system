@@ -18,6 +18,10 @@ export class UserService {
   }
 
   updateUser(userId: string, body: UserType): Observable<any> {
-    return this.http.put<any>(`${this.url}/${userId}`, body)
+    return this.http.put<any>(`${this.url}/${userId}`, body);
+  }
+
+  deleteUser(userId: string): Observable<any> {
+    return this.http.delete(`${this.url}/${userId}`);
   }
 }

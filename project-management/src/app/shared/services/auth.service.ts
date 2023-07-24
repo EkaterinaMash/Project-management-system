@@ -39,7 +39,6 @@ export class AuthService {
 
         setTimeout(() => {
           this.logout();
-          this.router.navigate(['main']);
         }, this.tokenExpireTime);
       })
   }
@@ -48,6 +47,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('expireTime');
     localStorage.removeItem('userLogin');
+    this.router.navigate(['main']);
   }
 
   register(user: UserType): Observable<any> {

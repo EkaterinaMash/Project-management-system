@@ -8,6 +8,8 @@ import {selectUsers} from "../../../../store/selectors/selectors";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserService} from "../../../../shared/services/user.service";
 import {Router} from "@angular/router";
+import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,6 +21,7 @@ export class EditProfileComponent implements OnInit {
   user: UserType | undefined;
   userId: string = '';
   editMode: boolean = false;
+  delete: boolean = true;
   @Input() users: UserType[] = [];
   editForm!: FormGroup;
 
@@ -26,7 +29,8 @@ export class EditProfileComponent implements OnInit {
               private userService: UserService,
               private store: Store<GeneralState>,
               private fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -56,5 +60,17 @@ export class EditProfileComponent implements OnInit {
       .updateUser(this.userId, this.editForm.value).subscribe();
     localStorage.removeItem('userLogin');
     localStorage.setItem('userLogin', this.editForm.value.login);
+  }
+
+  deleteUser() {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: {title: this.user.name, item: 'user'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.delete = result.data;
+      if (this.delete) {
+        this.authService.logout();
+        this.userService.deleteUser(this.user._id).subscribe()}
+    })
   }
 }
