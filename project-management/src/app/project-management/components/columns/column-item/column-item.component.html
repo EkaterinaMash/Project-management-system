@@ -1,6 +1,6 @@
 <ng-container>
   <h4>{{column?.title}}</h4>
-  <button mat-button>Create task</button>
+  <button mat-button (click)="createTask()">Create task</button>
   <button mat-button (click)="deleteColumn()">Delete column</button>
 </ng-container>
 

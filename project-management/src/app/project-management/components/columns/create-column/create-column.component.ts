@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {select, Store} from "@ngrx/store";
 import {GeneralState} from "../../../../store/state.model";
 import {BoardType} from "../../../../shared/types/board-type.model";
-import {selectBoard, selectBoardColumns} from "../../../../store/selectors/selectors";
-import {ColumnType, ColumnData} from "../../../../shared/types/column-type.model";
-import {getBoardsList} from "../../../../store/actions/board.action";
+import {selectBoardColumns} from "../../../../store/selectors/selectors";
+import {ColumnType} from "../../../../shared/types/column-type.model";
 import {BoardService} from "../../../../shared/services/board.service";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-create-column',
@@ -19,24 +19,19 @@ export class CreateColumnComponent implements OnInit {
 
   columns: ColumnType[] | undefined;
   columnOrder: number;
-  selectedBoard: BoardType | undefined;
-  selectedBoardId: string | undefined;
-  columnData: ColumnData | undefined;
   created: boolean = false;
+  boardId: string;
 
-  constructor(private fb: FormBuilder,
+  constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+              private fb: FormBuilder,
               private columnService: ColumnService,
               private boardService: BoardService,
-              private store: Store<GeneralState>
+              private store: Store<GeneralState>,
   ) {
   }
 
   ngOnInit(): void {
-    this.boardService
-      .getBoards()
-      .subscribe((boards) => {
-        this.store.dispatch(getBoardsList({boards}))
-      });
+    this.boardId = this.data.boardId;
     this.generateColumnOrder();
 
     this.createColumnForm = this.fb.group({
@@ -47,17 +42,9 @@ export class CreateColumnComponent implements OnInit {
   }
 
   onSubmit() {
-    this.store
-      .select(selectBoard)
-      .subscribe(board => this.selectedBoard = board);
-    this.selectedBoardId = this.selectedBoard._id;
-
     if (this.createColumnForm?.valid) {
       this.columnService
-        .createColumn(this.selectedBoardId, this.createColumnForm.value).subscribe();
-       /* .subscribe((column: ColumnType) => {
-          this.store.dispatch(setSelectedBoardColumn({column: column as ColumnType}))
-        })*/
+        .createColumn(this.boardId, this.createColumnForm.value).subscribe();
     }
     this.created = true;
   }
@@ -65,7 +52,9 @@ export class CreateColumnComponent implements OnInit {
   generateColumnOrder() {
     this.store
       .pipe(select(selectBoardColumns))
-      .subscribe(value => {this.columns = value});
+      .subscribe(value => {
+        this.columns = value
+      });
     if (!this.columns) this.columnOrder = 1;
     if (this.columns) this.columnOrder = this.columns.length + 1;
   }

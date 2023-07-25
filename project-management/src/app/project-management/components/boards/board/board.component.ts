@@ -47,9 +47,8 @@ export class BoardComponent implements OnInit{
   createColumn() {
     this.dialog.open(CreateColumnComponent, {
       width: '300px',
-      height: '300px'
+      height: '300px',
+      data: {boardId: this.board._id}
     })
-    this.router.navigate(['columns'])
   }
-
 }

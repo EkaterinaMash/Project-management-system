@@ -10,7 +10,7 @@ import {AppRoutingModule} from "../app-routing.module";
 import {RouterModule, Routes} from "@angular/router";
 import {CreateBoardComponent} from './components/boards/create-board/create-board.component';
 import {MatCardModule} from "@angular/material/card";
-import {MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material/dialog";
 import {BoardsListComponent} from './components/boards/boards-list/boards-list.component';
 import {ColumnItemComponent} from './components/columns/column-item/column-item.component';
 import {ColumnsListComponent} from "./components/columns/columns-list/columns-list.component";
@@ -53,6 +53,9 @@ import { CreateTaskComponent } from './components/tasks/create-task/create-task.
     MatDialogModule,
     //StoreModule.forFeature('boards123', boardsReduceraaaa),
     // StoreModule.forFeature('boardsList', boardsListReducer)
+  ],
+  providers: [
+    {provide: MAT_DIALOG_DATA, useValue: {}}
   ],
   exports: [
     RouterModule,

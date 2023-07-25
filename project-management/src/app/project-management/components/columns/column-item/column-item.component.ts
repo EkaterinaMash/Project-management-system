@@ -9,6 +9,7 @@ import {ColumnService} from "../../../../shared/services/column.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalComponent} from "../../../../shared/components/modal/modal.component";
 import {CommonService} from "../../../../shared/services/common.service";
+import {CreateTaskComponent} from "../../tasks/create-task/create-task.component";
 
 @Component({
   selector: 'app-column-item',
@@ -36,6 +37,13 @@ export class ColumnItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.delete = result.data;
       if (this.delete) this.columnService.deleteColumn(this.column.boardId, this.column._id).subscribe();
+    })
+  }
+
+  createTask() {
+    this.dialog.open(CreateTaskComponent, {
+      width: '300px',
+      height: '300px'
     })
   }
 }
