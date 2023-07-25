@@ -6,7 +6,7 @@ import {GeneralState} from "../../../../store/state.model";
 import {BoardType} from "../../../../shared/types/board-type.model";
 import {selectBoard, selectBoardColumns} from "../../../../store/selectors/selectors";
 import {ColumnType, ColumnData} from "../../../../shared/types/column-type.model";
-import {BoardsApiActions, setBoardColumn, setSelectedBoardColumn} from "../../../../store/actions/board.action";
+import {getBoardsList} from "../../../../store/actions/board.action";
 import {BoardService} from "../../../../shared/services/board.service";
 
 @Component({
@@ -35,7 +35,7 @@ export class CreateColumnComponent implements OnInit {
     this.boardService
       .getBoards()
       .subscribe((boards) => {
-        this.store.dispatch(BoardsApiActions.getBoardList({boards}))
+        this.store.dispatch(getBoardsList({boards}))
       });
     this.generateColumnOrder();
 
@@ -54,10 +54,10 @@ export class CreateColumnComponent implements OnInit {
 
     if (this.createColumnForm?.valid) {
       this.columnService
-        .createColumn(this.selectedBoardId, this.createColumnForm.value)
-        .subscribe((column: ColumnType) => {
+        .createColumn(this.selectedBoardId, this.createColumnForm.value).subscribe();
+       /* .subscribe((column: ColumnType) => {
           this.store.dispatch(setSelectedBoardColumn({column: column as ColumnType}))
-        })
+        })*/
     }
     this.created = true;
   }
@@ -68,7 +68,6 @@ export class CreateColumnComponent implements OnInit {
       .subscribe(value => {this.columns = value});
     if (!this.columns) this.columnOrder = 1;
     if (this.columns) this.columnOrder = this.columns.length + 1;
-    console.log(this.columnOrder, 0);
   }
 
   get title() {

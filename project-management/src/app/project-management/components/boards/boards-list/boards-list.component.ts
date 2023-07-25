@@ -6,7 +6,7 @@ import {Store} from "@ngrx/store";
 import {selectBoards} from "../../../../store/selectors/selectors";
 import {map, Observable} from "rxjs";
 import {BoardService} from "../../../../shared/services/board.service";
-import {BoardsApiActions, getBoards} from "../../../../store/actions/board.action";
+import {getBoardsList} from "../../../../store/actions/board.action";
 
 @Component({
   selector: 'app-boards-list',
@@ -25,7 +25,7 @@ export class BoardsListComponent implements OnInit{
     this.boardService
       .getBoards()
       .subscribe((boards) => {
-        this.store.dispatch(BoardsApiActions.getBoardList({boards}))
+        this.store.dispatch(getBoardsList({boards}))
       });
   }
 }

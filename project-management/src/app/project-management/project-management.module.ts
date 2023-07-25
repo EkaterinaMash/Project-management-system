@@ -21,6 +21,7 @@ import { BoardComponent } from './components/boards/board/board.component';
 import { ColumnsPageComponent } from './pages/columns-page/columns-page.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { EditProfileComponent } from './components/auth/edit-profile/edit-profile.component';
+import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EditProfileComponent } from './components/auth/edit-profile/edit-profil
     ColumnsPageComponent,
     LoginComponent,
     EditProfileComponent,
+    CreateTaskComponent,
   ],
   imports: [
     CommonModule,

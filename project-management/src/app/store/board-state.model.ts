@@ -33,11 +33,13 @@ export const initialBoardsListState: string[] = [];
 export interface SelectedBoardState {
   selectedBoard: BoardType | undefined;
   selectedBoardId: string;
+  selectedBoardColumns: ColumnType[],
 }
 
 export const initialSelectedBoardState: SelectedBoardState = {
   selectedBoard: undefined,
-  selectedBoardId: ''
+  selectedBoardId: '',
+  selectedBoardColumns: undefined
 }
 
 

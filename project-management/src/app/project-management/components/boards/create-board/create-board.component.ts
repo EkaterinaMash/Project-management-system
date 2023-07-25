@@ -4,7 +4,7 @@ import {BoardService} from "../../../../shared/services/board.service";
 import {Store} from "@ngrx/store";
 import {BoardType} from "../../../../shared/types/board-type.model";
 import {BoardState} from "../../../../store/board-state.model";
-import {BoardsActions} from "../../../../store/actions/board.action";
+import {addNewBoard} from "../../../../store/actions/board.action";
 
 @Component({
   selector: 'app-create-board',
@@ -34,7 +34,7 @@ export class CreateBoardComponent implements OnInit {
       this.boardService
         .createBoard(this.createBoardForm.value)
         .subscribe((data: BoardType) => {
-          this.store.dispatch(BoardsActions.addBoard({board: data as BoardType}));
+          this.store.dispatch(addNewBoard({newBoard: data}));
           this.created = true;
         });
     }

@@ -4,7 +4,6 @@ import {BoardType} from "../../../shared/types/board-type.model";
 import {Observable} from "rxjs";
 import {selectBoards} from "../../../store/selectors/selectors";
 import {BoardService} from "../../../shared/services/board.service";
-import {BoardsActions, BoardsApiActions} from "../../../store/actions/board.action";
 import {ChangeDetectorRef} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateBoardComponent} from "../../components/boards/create-board/create-board.component";

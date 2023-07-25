@@ -5,7 +5,7 @@ import {select, Store} from "@ngrx/store";
 import {Router} from "@angular/router";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {getColumns} from "../../../../store/actions/column.actions";
-import {selectBoardColumns, selectColumn} from "../../../../store/selectors/selectors";
+import {selectBoardColumns} from "../../../../store/selectors/selectors";
 
 @Component({
   selector: 'app-columns-list',
@@ -28,7 +28,6 @@ export class ColumnsListComponent implements OnInit {
       .subscribe((columns) => {
         this.store.dispatch(getColumns({columns}));
         this.recieveColumns();
-        console.log(this.columns);
       });
   }
 

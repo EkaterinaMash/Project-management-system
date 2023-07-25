@@ -8,6 +8,7 @@ import {setSelectedColumn} from "../../../../store/actions/column.actions";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {CommonService} from "../../../../shared/services/common.service";
 
 @Component({
   selector: 'app-column-item',
@@ -21,7 +22,8 @@ export class ColumnItemComponent implements OnInit {
   constructor(private store: Store<GeneralState>,
               private router: Router,
               private columnService: ColumnService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private commonService: CommonService) {
   }
 
   ngOnInit() {
