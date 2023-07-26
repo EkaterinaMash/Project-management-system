@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 })
 export class ColumnService {
   url = `${environment.backend}/boards`;
+  setUrl = `${environment.backend}/columnsSet`
 
   constructor(private http: HttpClient) {
   }
@@ -23,5 +24,9 @@ export class ColumnService {
 
   deleteColumn(boardId: string, columnId: string) {
     return this.http.delete(`${this.url}/${boardId}/columns/${columnId}`);
+  }
+
+  updateColumnsSet(body: ColumnType[]) {
+    return this.http.patch(this.setUrl, body);
   }
 }

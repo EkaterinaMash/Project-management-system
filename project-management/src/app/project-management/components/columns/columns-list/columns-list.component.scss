@@ -1,11 +1,12 @@
 div {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   gap: 1.5rem;
 }
 
 app-column-item {
   text-align: center;
+  display: grid;
 }

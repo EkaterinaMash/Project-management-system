@@ -1,8 +1,8 @@
 export interface ColumnType {
   _id?: string,
-  boardId: string,
-  title: string,
-  order: number,
+  boardId?: string,
+  title?: string,
+  order?: number,
 }
 
 export interface ColumnData {

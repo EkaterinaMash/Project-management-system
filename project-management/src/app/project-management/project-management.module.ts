@@ -24,6 +24,7 @@ import { EditProfileComponent } from './components/auth/edit-profile/edit-profil
 import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 import { TaskItemComponent } from './components/tasks/task-item/task-item.component';
+import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,8 @@ import { TaskItemComponent } from './components/tasks/task-item/task-item.compon
     RouterModule,
     MatCardModule,
     MatDialogModule,
+    CdkDropList,
+    CdkDrag,
     //StoreModule.forFeature('boards123', boardsReduceraaaa),
     // StoreModule.forFeature('boardsList', boardsListReducer)
   ],

@@ -8,7 +8,6 @@ import {getTasks, setSelectedColumn} from "../../../../store/actions/column.acti
 import {ColumnService} from "../../../../shared/services/column.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalComponent} from "../../../../shared/components/modal/modal.component";
-import {CommonService} from "../../../../shared/services/common.service";
 import {CreateTaskComponent} from "../../tasks/create-task/create-task.component";
 import {TasksService} from "../../../../shared/services/tasks.service";
 import {TaskType} from "../../../../shared/types/task-type.model";
@@ -30,24 +29,11 @@ export class ColumnItemComponent implements OnInit {
               private router: Router,
               private columnService: ColumnService,
               private tasksService: TasksService,
-              private dialog: MatDialog,
-              private commonService: CommonService) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
-    /*
-    this.boardId = this.column.boardId;
-    this.columnId = this.column._id;
 
-    this.tasksService
-      .getTasks(this.boardId, this.columnId)
-      .subscribe(tasks => {
-        this.store.dispatch(getTasks({tasks}));
-        this.store
-          .pipe(select(selectColumnTasks))
-          .subscribe(value => this.tasks = value);
-        console.log(this.tasks);
-      });*/
   }
 
   deleteColumn() {
