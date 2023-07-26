@@ -29,4 +29,8 @@ export class ColumnService {
   updateColumnsSet(body: ColumnType[]) {
     return this.http.patch(this.setUrl, body);
   }
+
+  updateColumn(boardId: string, columnId: string, body: ColumnType) {
+    return this.http.put(`${this.url}/${boardId}/columns/${columnId}`, body);
+  }
 }

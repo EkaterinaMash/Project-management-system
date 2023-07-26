@@ -1,6 +1,23 @@
 <ng-container>
-  <h4>{{column?.title}}</h4>
-  <!--<app-task-item *ngFor="let task of tasks" [task]="task">{{task.title}}</app-task-item>-->
+  <h4 *ngIf="!editMode" (click)="toggleEditMode()">{{column?.title}}</h4>
+  <form action="" *ngIf="editMode" [formGroup]="editTitleForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+      <mat-error
+        *ngIf="editTitleForm.get('title').hasError('minlength') ||
+               editTitleForm.get('title').hasError('maxlength')">
+        The title length should be from 5 to 30 letters.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="cdk-visually-hidden">
+      <mat-label>Order</mat-label>
+      <input matInput formControlName="order" [value]="column.order">
+    </mat-form-field>
+    <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">Submit</button>
+    <button mat-button (click)="toggleEditMode()">Cancel</button>
+  </form>
+
   <app-tasks-list [boardId]="column.boardId" [columnId]="column._id"></app-tasks-list>
   <button mat-button (click)="createTask()">Create task</button>
   <button mat-button (click)="deleteColumn()">Delete column</button>

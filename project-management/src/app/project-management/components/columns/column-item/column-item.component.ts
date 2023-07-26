@@ -11,6 +11,7 @@ import {ModalComponent} from "../../../../shared/components/modal/modal.componen
 import {CreateTaskComponent} from "../../tasks/create-task/create-task.component";
 import {TasksService} from "../../../../shared/services/tasks.service";
 import {TaskType} from "../../../../shared/types/task-type.model";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -19,22 +20,36 @@ import {TaskType} from "../../../../shared/types/task-type.model";
   styleUrls: ['./column-item.component.scss']
 })
 export class ColumnItemComponent implements OnInit {
-  @Input() column: ColumnType | undefined;
+  @Input() inputColumn: ColumnType | undefined;
   @Output() deleteColumnEvent = new EventEmitter<ColumnType>;
+  editTitleForm!: FormGroup;
 
+  column: ColumnType | undefined;
   delete: boolean = false;
   boardId: string;
   columnId: string;
   tasks: TaskType[] = [];
+  editMode: boolean = false;
 
   constructor(private store: Store<GeneralState>,
               private router: Router,
               private columnService: ColumnService,
               private tasksService: TasksService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private fb: FormBuilder) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.column = Object.assign({}, this.inputColumn);
+    this.columnId = this.column._id;
+    this.boardId = this.column.boardId;
+
+    this.editTitleForm = this.fb.group({
+      title: ['',
+        [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
+      order: [this.column.order]
+    })
+  }
 
   deleteColumn() {
     const dialogRef = this.dialog.open(ModalComponent, {
@@ -43,18 +58,28 @@ export class ColumnItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.delete = result.data;
       if (this.delete) {
-        this.columnService.deleteColumn(this.column.boardId, this.column._id).subscribe();
+        this.columnService.deleteColumn(this.boardId, this.columnId).subscribe();
         this.deleteColumnEvent.emit(this.column);
         this.delete = false;
       }
     })
   }
 
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+  editColumnTitle() {
+    this.columnService.updateColumn(this.boardId, this.columnId, this.editTitleForm.value).subscribe();
+    this.column.title = this.editTitleForm.value.title;
+    this.toggleEditMode();
+  }
+
   createTask() {
     this.dialog.open(CreateTaskComponent, {
       width: '300px',
       height: '300px',
-      data: {boardId: this.column.boardId, columnId: this.column._id}
+      data: {boardId: this.boardId, columnId: this.columnId}
     })
   }
 }
