@@ -1,0 +1,4 @@
+<ng-container>
+  <!--<div *ngFor="let task of tasks">{{task?.title}}</div>-->
+  <app-task-item *ngFor="let task of currentColumnTasks" [task]="task" [columnId]="columnId"></app-task-item>
+</ng-container>

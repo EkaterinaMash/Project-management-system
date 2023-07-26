@@ -1,5 +1,7 @@
 <ng-container>
   <h4>{{column?.title}}</h4>
+  <!--<app-task-item *ngFor="let task of tasks" [task]="task">{{task.title}}</app-task-item>-->
+  <app-tasks-list [boardId]="column.boardId" [columnId]="column._id"></app-tasks-list>
   <button mat-button (click)="createTask()">Create task</button>
   <button mat-button (click)="deleteColumn()">Delete column</button>
 </ng-container>

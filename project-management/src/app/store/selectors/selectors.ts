@@ -38,7 +38,9 @@ export const selectUsers = createSelector(
   }
 )
 
-export const selectBoardColumns = (state: GeneralState) => state.columns
+export const selectBoardColumns = (state: GeneralState) => state.columns;
+export const selectColumnTasks = (state: GeneralState) => state.tasks;
+
 
 
 

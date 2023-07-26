@@ -1,0 +1,28 @@
+<ng-container>
+  <h3>Create new task</h3>
+  <form [formGroup]="createTaskForm" *ngIf="!created">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+    <mat-form-field class="cdk-visually-hidden">
+      <mat-label>Order</mat-label>
+      <input matInput formControlName="order" [value]="taskOrder">
+    </mat-form-field>
+    <mat-form-field class="cdk-visually-hidden">
+      <mat-label>UserId</mat-label>
+      <input matInput formControlName="userId" [value]="1">
+    </mat-form-field>
+    <mat-form-field class="cdk-visually-hidden">
+      <mat-label>Users</mat-label>
+      <input matInput formControlName="users" [value]="'users'">
+    </mat-form-field>
+    <button type="submit" [disabled]="createTaskForm.invalid" (click)="onSubmit()">Submit</button>
+  </form>
+  <p *ngIf="created">The task is created!</p>
+  <button mat-dialog-close>Close</button>
+</ng-container>

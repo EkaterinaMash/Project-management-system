@@ -22,6 +22,8 @@ import { ColumnsPageComponent } from './pages/columns-page/columns-page.componen
 import { LoginComponent } from './components/auth/login/login.component';
 import { EditProfileComponent } from './components/auth/edit-profile/edit-profile.component';
 import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
+import { TasksListComponent } from './components/tasks-list/tasks-list.component';
+import { TaskItemComponent } from './components/tasks/task-item/task-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { CreateTaskComponent } from './components/tasks/create-task/create-task.
     LoginComponent,
     EditProfileComponent,
     CreateTaskComponent,
+    TasksListComponent,
+    TaskItemComponent,
   ],
   imports: [
     CommonModule,

@@ -27,13 +27,9 @@ export class ColumnsListComponent implements OnInit {
       .getColumns(this.boardId)
       .subscribe((columns) => {
         this.store.dispatch(getColumns({columns}));
-        this.recieveColumns();
+        this.store
+          .pipe(select(selectBoardColumns))
+          .subscribe(value => {this.columns = value});
       });
-  }
-
-  recieveColumns() {
-    this.store
-      .pipe(select(selectBoardColumns))
-      .subscribe(value => {this.columns = value});
   }
 }
