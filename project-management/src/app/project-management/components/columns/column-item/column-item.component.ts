@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Input} from "@angular/core";
 import {ColumnType} from "../../../../shared/types/column-type.model";
 import {GeneralState} from "../../../../store/state.model";
@@ -11,7 +11,7 @@ import {ModalComponent} from "../../../../shared/components/modal/modal.componen
 import {CreateTaskComponent} from "../../tasks/create-task/create-task.component";
 import {TasksService} from "../../../../shared/services/tasks.service";
 import {TaskType} from "../../../../shared/types/task-type.model";
-import {selectColumnTasks} from "../../../../store/selectors/selectors";
+
 
 @Component({
   selector: 'app-column-item',
@@ -20,6 +20,8 @@ import {selectColumnTasks} from "../../../../store/selectors/selectors";
 })
 export class ColumnItemComponent implements OnInit {
   @Input() column: ColumnType | undefined;
+  @Output() deleteColumnEvent = new EventEmitter<ColumnType>;
+
   delete: boolean = false;
   boardId: string;
   columnId: string;
@@ -32,9 +34,7 @@ export class ColumnItemComponent implements OnInit {
               private dialog: MatDialog) {
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   deleteColumn() {
     const dialogRef = this.dialog.open(ModalComponent, {
@@ -42,7 +42,11 @@ export class ColumnItemComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.delete = result.data;
-      if (this.delete) this.columnService.deleteColumn(this.column.boardId, this.column._id).subscribe();
+      if (this.delete) {
+        this.columnService.deleteColumn(this.column.boardId, this.column._id).subscribe();
+        this.deleteColumnEvent.emit(this.column);
+        this.delete = false;
+      }
     })
   }
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ColumnType} from "../../../../shared/types/column-type.model";
 import {GeneralState} from "../../../../store/state.model";
 import {select, Store} from "@ngrx/store";
@@ -19,6 +19,7 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
   serviceSub: Subscription;
   columns: ColumnType[] = []
   draggedColumns: ColumnType[] = [];
+  dragged: boolean = false;
   columnBody: ColumnType[] = [];
 
   constructor(private store: Store<GeneralState>,
@@ -41,20 +42,27 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
       });
   }
 
+  deleteColumn(deletedColumn: ColumnType) {
+    const columnIndex = this.draggedColumns.indexOf(deletedColumn);
+    this.draggedColumns.splice(columnIndex, 1);
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.draggedColumns, event.previousIndex, event.currentIndex);
+    this.dragged = true;
   }
 
   ngOnDestroy() {
     if (this.serviceSub) {
-      this.draggedColumns.forEach((column, index) => {
-        let currentColumn : ColumnType = {};
-        currentColumn.order = index;
-        currentColumn._id = column._id;
-        this.columnBody.push(currentColumn);
-      })
-
-      this.columnService.updateColumnsSet(this.columnBody).subscribe();
+      if (this.dragged && this.draggedColumns.length) {
+        this.draggedColumns.forEach((column, index) => {
+          let currentColumn : ColumnType = {};
+          currentColumn.order = index;
+          currentColumn._id = column._id;
+          this.columnBody.push(currentColumn);
+        });
+        this.columnService.updateColumnsSet(this.columnBody).subscribe();
+      }
       this.serviceSub.unsubscribe();
     }
   }
