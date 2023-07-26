@@ -52,7 +52,7 @@ export class CreateTaskComponent implements OnInit {
   generateTaskOrder() {
     this.store.pipe(select(selectColumnTasks))
       .subscribe(value => this.tasks = value);
-    if (!this.tasks) this.taskOrder = 1;
-    if (this.tasks) this.taskOrder = this.tasks.length + 1;
+    if (!this.tasks) this.taskOrder = 0;
+    if (this.tasks) this.taskOrder = this.tasks.length;
   }
 }

@@ -8,3 +8,9 @@ export interface TaskType {
   order: number,
   users?: string[]
 }
+
+export interface TaskBody {
+  _id?: string,
+  order?: number,
+  columnId?: string
+}

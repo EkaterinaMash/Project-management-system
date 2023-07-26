@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 })
 export class TasksService {
   url = `${environment.backend}/boards`;
+  setUrl = `${environment.backend}/tasksSet`
 
   constructor(private http: HttpClient) { }
 
@@ -22,5 +23,9 @@ export class TasksService {
 
   getTasks(boardId: string, columnId: string): Observable<any> {
     return this.http.get(`${this.generateTasksUrl(boardId, columnId)}`)
+  }
+
+  updateTasksSet(body) {
+    return this.http.patch(this.setUrl, body);
   }
 }

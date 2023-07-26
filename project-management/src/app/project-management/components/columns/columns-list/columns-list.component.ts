@@ -47,7 +47,7 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
     this.draggedColumns.splice(columnIndex, 1);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<ColumnType[]>) {
     moveItemInArray(this.draggedColumns, event.previousIndex, event.currentIndex);
     this.dragged = true;
   }

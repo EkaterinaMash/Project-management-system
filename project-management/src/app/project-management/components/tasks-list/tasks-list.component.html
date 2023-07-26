@@ -1,4 +1,8 @@
 <ng-container>
-  <!--<div *ngFor="let task of tasks">{{task?.title}}</div>-->
-  <app-task-item *ngFor="let task of currentColumnTasks" [task]="task" [columnId]="columnId"></app-task-item>
+  <div cdkDropList (cdkDropListDropped)="drop($event)">
+    <app-task-item *ngFor="let task of currentColumnTasks"
+                   [task]="task" [columnId]="columnId"
+                   cdkDrag>
+    </app-task-item>
+  </div>
 </ng-container>
