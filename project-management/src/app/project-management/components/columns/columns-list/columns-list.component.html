@@ -1,5 +1,7 @@
 <ng-container>
-  <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+  <div cdkDropList
+       cdkDropListOrientation="horizontal"
+       (cdkDropListDropped)="drop($event)">
     <app-column-item
       *ngFor="let column of draggedColumns"
       [inputColumn]="column"

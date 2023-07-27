@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ColumnType} from "../../../shared/types/column-type.model";
 import {TasksService} from "../../../shared/services/tasks.service";
 import {TaskBody, TaskType} from "../../../shared/types/task-type.model";
@@ -6,7 +6,7 @@ import {GeneralState} from "../../../store/state.model";
 import {select, Store} from "@ngrx/store";
 import {clearTasks, getTasks} from "../../../store/actions/column.actions";
 import {selectColumnTasks} from "../../../store/selectors/selectors";
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -15,8 +15,8 @@ import {Subscription} from "rxjs";
   styleUrls: ['./tasks-list.component.scss']
 })
 export class TasksListComponent implements OnInit, OnDestroy {
-  @Input() boardId: string
-  @Input() columnId: string
+  @Input() boardId: string;
+  @Input() columnId: string;
   tasks: TaskType[] = [];
   currentColumnTasks: TaskType[] = [];
   dragged: boolean = false;
