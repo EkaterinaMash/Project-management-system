@@ -2,14 +2,15 @@
   <div cdkDropList
        cdkDropListGroup
        cdkDropListOrientation="horizontal"
-       (cdkDropListDropped)="drop($event)">
+       (cdkDropListDropped)="dropColumn($event)">
     <app-column-item
-      *ngFor="let column of draggedColumns"
+      *ngFor="let column of columns"
       [inputColumn]="column"
       cdkDrag
       (deleteColumnEvent)="deleteColumn($event)">
     </app-column-item>
   </div>
+  <button mat-button (click)="createColumn()">Create column</button>
 </ng-container>
 
 

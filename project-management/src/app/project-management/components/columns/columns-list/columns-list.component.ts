@@ -8,6 +8,8 @@ import {getColumns} from "../../../../store/actions/column.actions";
 import {selectBoardColumns} from "../../../../store/selectors/selectors";
 import {CdkDragDrop, CdkDrag, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {Subscription} from "rxjs";
+import {CreateColumnComponent} from "../create-column/create-column.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-columns-list',
@@ -15,7 +17,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./columns-list.component.scss'],
 })
 export class ColumnsListComponent implements OnInit, OnDestroy {
-  @Input() boardId: string
+  @Input() boardId: string;
   serviceSub: Subscription;
   columns: ColumnType[] = []
   draggedColumns: ColumnType[] = [];
@@ -24,9 +26,8 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<GeneralState>,
               private router: Router,
-              private columnService: ColumnService) {
-
-  }
+              private columnService: ColumnService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.serviceSub = this.columnService
@@ -36,26 +37,34 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
         this.store
           .pipe(select(selectBoardColumns))
           .subscribe(value => {
-            this.columns = value
+            this.columns = value.slice().sort((a, b) => a.order - b.order)
           });
-        this.draggedColumns = this.columns.slice().sort((a, b) => a.order - b.order);
       });
   }
 
   deleteColumn(deletedColumn: ColumnType) {
-    const columnIndex = this.draggedColumns.indexOf(deletedColumn);
-    this.draggedColumns.splice(columnIndex, 1);
+    const columnIndex = this.columns.indexOf(deletedColumn);
+    this.columns.splice(columnIndex, 1);
   }
 
-  drop(event: CdkDragDrop<ColumnType[]>) {
-    moveItemInArray(this.draggedColumns, event.previousIndex, event.currentIndex);
+  dropColumn(event: CdkDragDrop<ColumnType[]>) {
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
     this.dragged = true;
+  }
+
+  createColumn() {
+    const dialogRef = this.dialog.open(CreateColumnComponent, {
+      width: '300px',
+      height: '300px',
+      data: {boardId: this.boardId}
+    });
+    dialogRef.afterClosed().subscribe();
   }
 
   ngOnDestroy() {
     if (this.serviceSub) {
-      if (this.dragged && this.draggedColumns.length) {
-        this.draggedColumns.forEach((column, index) => {
+      if (this.dragged && this.columns.length) {
+        this.columns.forEach((column, index) => {
           let currentColumn : ColumnType = {};
           currentColumn.order = index;
           currentColumn._id = column._id;

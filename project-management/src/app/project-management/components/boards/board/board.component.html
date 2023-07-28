@@ -1,7 +1,6 @@
 <mat-card>
   <mat-card-title *ngIf="board">{{board.title}}</mat-card-title>
-  <button mat-button (click)="createColumn()">Create column</button>
   <button mat-button (click)="deleteBoard()" >Delete board</button>
-  <app-columns-list [boardId]="this.board?._id"></app-columns-list>
+  <app-columns-list [boardId]="this.board?._id" ></app-columns-list>
 </mat-card>
 

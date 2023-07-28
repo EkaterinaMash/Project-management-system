@@ -28,7 +28,8 @@
       <app-task-item
         *ngFor="let task of currentColumnTasks"
         [task]="task" [columnId]="columnId"
-        cdkDrag>
+        cdkDrag
+        (deleteTaskEvent)="deleteTask($event)">
       </app-task-item>
     </div>
   </div>

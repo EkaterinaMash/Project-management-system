@@ -7,7 +7,8 @@ import {BoardType} from "../../../../shared/types/board-type.model";
 import {selectBoardColumns} from "../../../../store/selectors/selectors";
 import {ColumnType} from "../../../../shared/types/column-type.model";
 import {BoardService} from "../../../../shared/services/board.service";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {addColumn} from "../../../../store/actions/column.actions";
 
 @Component({
   selector: 'app-create-column',
@@ -23,6 +24,7 @@ export class CreateColumnComponent implements OnInit {
   boardId: string;
 
   constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+              private dialogRef: MatDialogRef<CreateColumnComponent>,
               private fb: FormBuilder,
               private columnService: ColumnService,
               private boardService: BoardService,
@@ -44,8 +46,12 @@ export class CreateColumnComponent implements OnInit {
   onSubmit() {
     if (this.createColumnForm?.valid) {
       this.columnService
-        .createColumn(this.boardId, this.createColumnForm.value).subscribe();
+        .createColumn(this.boardId, this.createColumnForm.value)
+        .subscribe((data: ColumnType) => {
+          this.store.dispatch(addColumn({newColumn: data}));
+        });
     }
+    this.dialogRef.close();
     this.created = true;
   }
 

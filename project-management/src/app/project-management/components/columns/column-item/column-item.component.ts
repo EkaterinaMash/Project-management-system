@@ -4,7 +4,7 @@ import {ColumnType} from "../../../../shared/types/column-type.model";
 import {GeneralState} from "../../../../store/state.model";
 import {select, Store} from "@ngrx/store";
 import {Router} from "@angular/router";
-import {clearTasks, getTasks, setSelectedColumn} from "../../../../store/actions/column.actions";
+import {clearTasks, getTasks, removeColumn, setSelectedColumn} from "../../../../store/actions/column.actions";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalComponent} from "../../../../shared/components/modal/modal.component";
@@ -32,9 +32,9 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
   tasks: TaskType[] = [];
   currentColumnTasks: TaskType[] = [];
   tasksBody: TaskBody[] = [];
-  containerData: any;
 
   delete: boolean = false;
+  add: boolean = false;
   editMode: boolean = false;
   dragged: boolean = false;
   boardId: string;
@@ -81,11 +81,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     this.currentColumnTasks = this.tasks
       .filter(task => task.columnId === this.columnId)
       .sort((a, b) => a.order - b.order);
-
-    this.containerData = {
-      column: this.column,
-      currentColumnTasks: this.currentColumnTasks
-    }
   }
 
   dropTask(event: CdkDragDrop<TaskType[]>) {
@@ -149,6 +144,14 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     this.tasksBody.push(task);
   }
 
+  deleteTask(deletedTask: TaskType) {
+    const taskIndex = this.currentColumnTasks.indexOf(deletedTask);
+    this.currentColumnTasks.splice(taskIndex, 1);
+    for (let i=taskIndex; i<this.currentColumnTasks.length; i++) {
+      this.formTasksBody(this.currentColumnTasks[i], i);
+    }
+  }
+
   deleteColumn() {
     const dialogRef = this.dialog.open(ModalComponent, {
       data: {title: this.column.title, item: 'column'}
@@ -156,7 +159,11 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.delete = result.data;
       if (this.delete) {
-        this.columnService.deleteColumn(this.boardId, this.columnId).subscribe();
+        this.columnService
+          .deleteColumn(this.boardId, this.columnId)
+          .subscribe((data: ColumnType) => {
+            this.store.dispatch(removeColumn({removedColumn: data}))
+          });
         this.deleteColumnEvent.emit(this.column);
         this.delete = false;
       }
@@ -174,10 +181,17 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
   }
 
   createTask() {
-    this.dialog.open(CreateTaskComponent, {
+    const dialogRef = this.dialog.open(CreateTaskComponent, {
       width: '300px',
       height: '300px',
       data: {boardId: this.boardId, columnId: this.columnId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.add = result.data;
+      if (this.add) {
+        this.store.dispatch(clearTasks());
+        this.loadTasks();
+      }
     })
   }
 

@@ -3,7 +3,7 @@ import {BoardType} from "../../../../shared/types/board-type.model";
 import {select, Store} from "@ngrx/store";
 import {GeneralState} from "../../../../store/state.model";
 import {Router} from "@angular/router";
-import {selectBoard} from "../../../../store/selectors/selectors";
+import {selectBoard, selectBoardColumns} from "../../../../store/selectors/selectors";
 import {BoardService} from "../../../../shared/services/board.service";
 import {take} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
@@ -18,6 +18,7 @@ import {CreateColumnComponent} from "../../columns/create-column/create-column.c
 export class BoardComponent implements OnInit{
   board: BoardType | undefined
   delete: boolean = false;
+  columns$ = this.store.select(selectBoardColumns);
 
   constructor(private store: Store<GeneralState>,
               private router: Router,
@@ -44,11 +45,5 @@ export class BoardComponent implements OnInit{
       if (this.delete) this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe()});
   }
 
-  createColumn() {
-    this.dialog.open(CreateColumnComponent, {
-      width: '300px',
-      height: '300px',
-      data: {boardId: this.board._id}
-    })
-  }
+
 }

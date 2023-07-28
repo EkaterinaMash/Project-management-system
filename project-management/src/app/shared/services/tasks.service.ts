@@ -28,4 +28,8 @@ export class TasksService {
   updateTasksSet(body) {
     return this.http.patch(this.setUrl, body);
   }
+
+  deleteTask(boardId: string, columnId: string, taskId: string) {
+    return this.http.delete(`${this.generateTasksUrl(boardId, columnId)}/${taskId}`)
+  }
 }

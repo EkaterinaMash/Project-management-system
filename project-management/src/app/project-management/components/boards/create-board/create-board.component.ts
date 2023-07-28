@@ -40,8 +40,8 @@ export class CreateBoardComponent implements OnInit {
     }
   }
 
-  get title() {
+  /*get title() {
     return this.createBoardForm!.get('title');
-  }
+  }*/
 
 }

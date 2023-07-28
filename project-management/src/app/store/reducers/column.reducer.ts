@@ -1,12 +1,24 @@
 import {createAction, createReducer, on} from "@ngrx/store";
 import {initialColumnsState, initialSelectedColumnState, initialTasksState} from "../column-state.model";
-import {clearTasks, getColumns, getTasks, setSelectedColumn} from "../actions/column.actions";
+import {addColumn, clearTasks, getColumns, getTasks, removeColumn, setSelectedColumn} from "../actions/column.actions";
 
 export const columnsReducer = createReducer(
   initialColumnsState,
   on(getColumns, (state, {columns}) => {
     return columns;
   }),
+  on(addColumn, (state, {newColumn}) => {
+    const clone = state.slice();
+    clone.push(newColumn);
+    return clone;
+  }),
+  on(removeColumn, (state, {removedColumn}) => {
+    const clone = state.slice();
+    const columnToRemove = clone.find(column => column._id === removedColumn._id);
+    const index = clone.indexOf(columnToRemove);
+    clone.splice(index, 1);
+    return clone;
+  })
 )
 
 export const tasksReducer = createReducer(
