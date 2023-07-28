@@ -2,11 +2,14 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Store} from "@ngrx/store";
-import { AuthState} from "../../store/auth-state.model";
-import {catchError, map, Observable, of, throwError} from "rxjs";
+import {AuthState} from "../../store/auth-state.model";
+import {catchError, EMPTY, map, Observable, of, throwError} from "rxjs";
 import {UserType} from "../types/user-type.model";
 import {Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
+import {MatDialog} from "@angular/material/dialog";
+import {ErrorInterceptor} from "../interseptors/error.interceptor";
+import {ErrorMessageComponent} from "../components/error-message/error-message.component";
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +26,14 @@ export class AuthService {
 
   constructor(private http: HttpClient,
               private store: Store<AuthState>,
-              private router: Router) {
+              private router: Router,
+              private dialog: MatDialog) {
   }
 
   login(user: UserType) {
-    console.log(user);
     return this.http
       .post<any>(`${this.url}/signin`, user)
+      .pipe(catchError(error => this.handleError(error)))
       .subscribe(res => {
         this.decodedToken = jwtDecode(res.token);
         this.tokenExpireTime = this.decodedToken.exp;
@@ -41,6 +45,7 @@ export class AuthService {
           this.logout();
         }, this.tokenExpireTime);
       })
+
   }
 
   logout(): void {
@@ -51,7 +56,9 @@ export class AuthService {
   }
 
   register(user: UserType): Observable<any> {
-    return this.http.post(this.url + '/signup', user);
+    return this.http.post(this.url + '/signup', user)
+      .pipe(
+        catchError(error => this.handleError(error)));
   }
 
   get isLoggedIn(): boolean {
@@ -67,22 +74,21 @@ export class AuthService {
     return of(sessionStorage.getItem('token') ? sessionStorage.getItem('token') : null);
   }
 
-  getUserProfile(id: string): Observable<any> {
-    let userUrl = `${environment.backend}/users/${id}`;
-    return this.http.get(userUrl, this.httpOptions)
-      .pipe(map(response => {
-          return response || {}
-        }),
-      )
-  }
 
-  handleError(error: HttpErrorResponse) {
-    let message = '';
-    if (error.error instanceof ErrorEvent) {
-      message = error.error.message
+  handleError(error) {
+    let errorMessage = '';
+    console.log(error);
+    if (error.error.statusCode === 401) {
+      errorMessage = `Error: ${error.error.message}!\nInvalid authentification credentials for the target resourse.`
+    } else if (error.error.statusCode === 409) {
+      errorMessage = `Error: ${error.error.message}!\nPlease create another login.`
     } else {
-      message = `Error: ${error.status}\n Message: ${error.message}`;
+      errorMessage = `Error: ${error.error.message}`
     }
-    return () => new Error(message);
+     this.dialog.open(ErrorMessageComponent, {
+       data: {message: errorMessage}
+     })
+
+    return EMPTY;
   }
 }

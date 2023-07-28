@@ -25,6 +25,8 @@ import { CreateTaskComponent } from './components/tasks/create-task/create-task.
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 import { TaskItemComponent } from './components/tasks/task-item/task-item.component';
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {ErrorInterceptor} from "../shared/interseptors/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
         // StoreModule.forFeature('boardsList', boardsListReducer)
     ],
   providers: [
-    {provide: MAT_DIALOG_DATA, useValue: {}}
+    {provide: MAT_DIALOG_DATA, useValue: {}},
+  //  {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
   ],
   exports: [
     RouterModule,

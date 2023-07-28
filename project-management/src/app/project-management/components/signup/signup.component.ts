@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../shared/services/auth.service";
 import {Router} from "@angular/router";
 import {GeneralState} from "../../../store/state.model";
+import {login} from "../../../store/actions/auth.actions";
 
 @Component({
   selector: 'app-signup',
@@ -41,7 +42,7 @@ export class SignupComponent implements OnInit {
             this.authForm.reset();
             this.router.navigate(['login']);
           }
-        })
+        });
     }
   }
 
