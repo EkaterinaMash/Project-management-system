@@ -40,11 +40,14 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.store
       .pipe(select(selectColumnTasks))
       .subscribe(value => {
-        this.tasks = value
+      //  this.tasks = value
+        this.currentColumnTasks = value
+          .filter(task => task.columnId === this.columnId)
+          .sort((a, b) => a.order - b.order)
       });
-    this.currentColumnTasks = this.tasks
+    /*this.currentColumnTasks = this.tasks
       .filter(task => task.columnId === this.columnId)
-      .sort((a, b) => a.order - b.order);
+      .sort((a, b) => a.order - b.order);*/
   }
 
   drop(event: CdkDragDrop<TaskType[]>) {

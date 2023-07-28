@@ -61,6 +61,7 @@ export class CreateColumnComponent implements OnInit {
       .subscribe(value => {
         this.columns = value
       });
+    console.log(64, this.columns);
     if (!this.columns) this.columnOrder = 0;
     if (this.columns) this.columnOrder = this.columns.length;
   }

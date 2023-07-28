@@ -29,7 +29,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
   editTitleForm!: FormGroup;
 
   column: ColumnType | undefined;
-  tasks: TaskType[] = [];
   currentColumnTasks: TaskType[] = [];
   tasksBody: TaskBody[] = [];
 
@@ -76,11 +75,10 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     this.store
       .pipe(select(selectColumnTasks))
       .subscribe(value => {
-        this.tasks = value
+        this.currentColumnTasks = value
+          .filter(task => task.columnId === this.columnId)
+          .sort((a, b) => a.order - b.order);
       });
-    this.currentColumnTasks = this.tasks
-      .filter(task => task.columnId === this.columnId)
-      .sort((a, b) => a.order - b.order);
   }
 
   dropTask(event: CdkDragDrop<TaskType[]>) {
@@ -186,13 +184,7 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
       height: '300px',
       data: {boardId: this.boardId, columnId: this.columnId}
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.add = result.data;
-      if (this.add) {
-        this.store.dispatch(clearTasks());
-        this.loadTasks();
-      }
-    })
+    dialogRef.afterClosed().subscribe();
   }
 
   ngOnDestroy() {

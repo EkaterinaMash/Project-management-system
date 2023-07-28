@@ -18,7 +18,6 @@ import {CreateColumnComponent} from "../../columns/create-column/create-column.c
 export class BoardComponent implements OnInit{
   board: BoardType | undefined
   delete: boolean = false;
-  columns$ = this.store.select(selectBoardColumns);
 
   constructor(private store: Store<GeneralState>,
               private router: Router,

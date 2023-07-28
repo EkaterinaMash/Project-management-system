@@ -19,3 +19,9 @@ export const getTasks = createAction(
 export const clearTasks = createAction(
   '[Selected column] clear column tasks'
 )
+export const addTask = createAction(
+  '[Selected column] add task', props<{newTask: TaskType}>()
+)
+export const removeTask = createAction(
+  '[Selected column] remove task', props<{removedTask: TaskType}>()
+)
