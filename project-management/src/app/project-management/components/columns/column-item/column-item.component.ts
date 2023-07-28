@@ -12,7 +12,7 @@ import {CreateTaskComponent} from "../../tasks/create-task/create-task.component
 import {TasksService} from "../../../../shared/services/tasks.service";
 import {TaskBody, TaskType} from "../../../../shared/types/task-type.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Subscription} from "rxjs";
 import {selectColumnTasks} from "../../../../store/selectors/selectors";
 
@@ -32,12 +32,14 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
   tasks: TaskType[] = [];
   currentColumnTasks: TaskType[] = [];
   tasksBody: TaskBody[] = [];
+  containerData: any;
 
   delete: boolean = false;
   editMode: boolean = false;
   dragged: boolean = false;
   boardId: string;
   columnId: string;
+  currentColumnId: string;
   tasksSubscription: Subscription;
 
   constructor(private store: Store<GeneralState>,
@@ -52,6 +54,7 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     this.column = Object.assign({}, this.inputColumn);
     this.columnId = this.column._id;
     this.boardId = this.column.boardId;
+    this.loadTasks();
 
     this.editTitleForm = this.fb.group({
       title: ['',
@@ -78,11 +81,72 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     this.currentColumnTasks = this.tasks
       .filter(task => task.columnId === this.columnId)
       .sort((a, b) => a.order - b.order);
+
+    this.containerData = {
+      column: this.column,
+      currentColumnTasks: this.currentColumnTasks
+    }
   }
 
   dropTask(event: CdkDragDrop<TaskType[]>) {
-    moveItemInArray(this.currentColumnTasks, event.previousIndex, event.currentIndex);
-    this.dragged = true;
+    const currentTasksList = event.container.data;
+    const previousTasksList = event.previousContainer.data;
+    const currentIndex = event.currentIndex;
+    const previousIndex = event.previousIndex;
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray(currentTasksList, previousIndex, currentIndex);
+      this.changeTasksOrderInColumn(currentIndex, previousIndex, currentTasksList);
+    } else {
+      this.currentColumnId = currentTasksList[0].columnId;
+
+      transferArrayItem(
+        previousTasksList,
+        currentTasksList,
+        previousIndex,
+        currentIndex,
+      );
+
+      this.formTasksBody(event.container.data[event.currentIndex], event.currentIndex, this.currentColumnId);
+      this.changePreviousContainerTasks(event.previousIndex, event.previousContainer.data);
+      this.changeCurrentContainerTasks(event.currentIndex, event.container.data);
+    }
+    this.tasksService.updateTasksSet(this.tasksBody).subscribe();
+    this.tasksBody = [];
+  }
+
+  changeCurrentContainerTasks(index, tasks) {
+    if (index < tasks.length - 1) {
+      for (let i = index + 1; i < tasks.length; i++) {
+        this.formTasksBody(tasks[i], i)
+      }
+    }
+  }
+
+  changePreviousContainerTasks(index, tasks) {
+    for (let i = index; i < tasks.length; i++) {
+      this.formTasksBody(tasks[i], i)
+    }
+  }
+
+  changeTasksOrderInColumn(currentIndex, previousIndex, tasks) {
+    if (previousIndex < currentIndex) {
+      for (let i = previousIndex; i <= currentIndex; i++) {
+        this.formTasksBody(tasks[i], i);
+      }
+    } else {
+      for (let i = currentIndex; i <= previousIndex; i++) {
+        this.formTasksBody(tasks[i], i);
+      }
+    }
+  }
+
+  formTasksBody(currentTask, index, columnId?) {
+    const task: TaskBody = {};
+    task._id = currentTask._id;
+    task.order = index;
+    task.columnId = columnId ? columnId : currentTask.columnId;
+    this.tasksBody.push(task);
   }
 
   deleteColumn() {
@@ -119,16 +183,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.tasksSubscription) {
-      if (this.dragged && this.currentColumnTasks.length) {
-        this.currentColumnTasks.forEach((task, index) => {
-          const currentTask: TaskBody = {};
-          currentTask._id = task._id;
-          currentTask.order = index;
-          currentTask.columnId = task.columnId;
-          this.tasksBody.push(currentTask);
-        });
-        this.tasksService.updateTasksSet(this.tasksBody).subscribe();
-      }
       this.store.dispatch(clearTasks());
       this.tasksSubscription.unsubscribe();
     }

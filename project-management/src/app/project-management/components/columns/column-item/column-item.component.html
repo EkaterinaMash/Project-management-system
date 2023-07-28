@@ -20,8 +20,11 @@
     </form>
   </div>
 
-  <div class="tasks-list" cdkDropListGroup>
-    <div cdkDropList (cdkDropListDropped)="dropTask($event)">
+  <div class="tasks-list">
+    <div cdkDropList
+         [cdkDropListData]="currentColumnTasks"
+         (cdkDropListDropped)="dropTask($event)"
+         [attr.id]="columnId">
       <app-task-item
         *ngFor="let task of currentColumnTasks"
         [task]="task" [columnId]="columnId"
