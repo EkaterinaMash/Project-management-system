@@ -27,6 +27,7 @@ import { TaskItemComponent } from './components/tasks/task-item/task-item.compon
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {ErrorInterceptor} from "../shared/interseptors/error.interceptor";
+import { EditTaskComponent } from './components/tasks/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {ErrorInterceptor} from "../shared/interseptors/error.interceptor";
     CreateTaskComponent,
     TasksListComponent,
     TaskItemComponent,
+    EditTaskComponent,
   ],
     imports: [
         CommonModule,

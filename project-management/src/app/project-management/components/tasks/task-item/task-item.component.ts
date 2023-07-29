@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {removeTask} from "../../../../store/actions/column.actions";
 import {GeneralState} from "../../../../store/state.model";
 import {Store} from "@ngrx/store";
+import {EditTaskComponent} from "../edit-task/edit-task.component";
 
 @Component({
   selector: 'app-task-item',
@@ -13,9 +14,10 @@ import {Store} from "@ngrx/store";
   styleUrls: ['./task-item.component.scss']
 })
 export class TaskItemComponent implements OnInit {
-  @Input() task: TaskType | undefined;
+  @Input() taskInput: TaskType | undefined;
   @Input() columnId: string;
   @Output() deleteTaskEvent = new EventEmitter<TaskType>;
+  task: TaskType | undefined;
   boardId: string;
   taskId: string;
   delete: boolean = false;
@@ -26,6 +28,7 @@ export class TaskItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.task = Object.assign({}, this.taskInput);
     this.boardId = this.task.boardId;
     this.taskId = this.task._id;
   }
@@ -45,6 +48,21 @@ export class TaskItemComponent implements OnInit {
         this.deleteTaskEvent.emit(this.task);
         this.delete = false;
       }
+    })
+  }
+
+  editTask() {
+    const dialogRef = this.dialog.open(EditTaskComponent, {
+      data: {
+        boardId: this.boardId,
+        columnId: this.columnId,
+        taskId: this.taskId,
+        taskOrder: this.task.order
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.task.title = result.data.title;
+      this.task.description = result.data.description;
     })
   }
 }

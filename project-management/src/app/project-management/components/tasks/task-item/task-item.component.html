@@ -1,6 +1,6 @@
 <ng-container>
   <mat-card>
-    <mat-card-title>To do: <span>{{task.title}}</span></mat-card-title>
+    <mat-card-title (click)="editTask()">To do: <span>{{task.title}}</span></mat-card-title>
     <mat-card-content>Description: <span>{{task.description}}</span></mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="deleteTask()">Delete task</button>

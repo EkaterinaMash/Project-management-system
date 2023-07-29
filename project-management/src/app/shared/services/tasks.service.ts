@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {TaskType} from "../types/task-type.model";
+import {TaskBody, TaskType} from "../types/task-type.model";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -31,5 +31,9 @@ export class TasksService {
 
   deleteTask(boardId: string, columnId: string, taskId: string) {
     return this.http.delete(`${this.generateTasksUrl(boardId, columnId)}/${taskId}`)
+  }
+
+  editTask(boardId: string, columnId: string, taskId: string, body: TaskType) {
+    return this.http.put(`${this.generateTasksUrl(boardId, columnId)}/${taskId}`, body)
   }
 }

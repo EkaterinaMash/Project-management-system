@@ -1,0 +1,26 @@
+<ng-container>
+  <h3>Edit task</h3>
+  <form [formGroup]="editTaskForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+      <mat-error
+        *ngIf="editTaskForm.get('title').hasError('minlength') ||
+               editTaskForm.get('title').hasError('maxlength')">
+        The title length should be from 5 to 20 letters.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+      <mat-error
+        *ngIf="editTaskForm.get('description').hasError('minlength') ||
+               editTaskForm.get('description').hasError('maxlength')">
+        The description length should be from 10 to 50 letters.
+      </mat-error>
+    </mat-form-field>
+    <button type="submit" [disabled]="editTaskForm.invalid" (click)="onSubmit()">Submit</button>
+  </form>
+  <button mat-dialog-close>Close</button>
+</ng-container>
+
