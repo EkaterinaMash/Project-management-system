@@ -189,7 +189,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.tasksSubscription) {
-      this.store.dispatch(clearTasks());
       this.tasksSubscription.unsubscribe();
     }
   }

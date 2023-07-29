@@ -2,6 +2,7 @@ mat-card {
   display: grid;
   gap: 1rem;
   background-color: whitesmoke;
+  min-width: 20rem;
 }
 
 mat-card-title {

@@ -4,7 +4,7 @@ import {GeneralState} from "../../../../store/state.model";
 import {select, Store} from "@ngrx/store";
 import {Router} from "@angular/router";
 import {ColumnService} from "../../../../shared/services/column.service";
-import {getColumns} from "../../../../store/actions/column.actions";
+import {clearTasks, getColumns} from "../../../../store/actions/column.actions";
 import {selectBoardColumns} from "../../../../store/selectors/selectors";
 import {CdkDragDrop, CdkDrag, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {Subscription} from "rxjs";
@@ -72,6 +72,7 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
         });
         this.columnService.updateColumnsSet(this.columnBody).subscribe();
       }
+      this.store.dispatch(clearTasks());
       this.serviceSub.unsubscribe();
     }
   }
