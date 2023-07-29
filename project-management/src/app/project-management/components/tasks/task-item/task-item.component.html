@@ -1,5 +1,9 @@
 <ng-container>
-  <p>To do: <span>{{task.title}}</span></p>
-  <p>Description: <span>{{task.description}}</span></p>
-  <button mat-button>Delete task</button>
+  <mat-card>
+    <mat-card-title>To do: <span>{{task.title}}</span></mat-card-title>
+    <mat-card-content>Description: <span>{{task.description}}</span></mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="deleteTask()">Delete task</button>
+    </mat-card-actions>
+  </mat-card>
 </ng-container>
