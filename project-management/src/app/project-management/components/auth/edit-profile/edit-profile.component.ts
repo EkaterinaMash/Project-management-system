@@ -19,6 +19,7 @@ import {MatDialog} from "@angular/material/dialog";
 export class EditProfileComponent implements OnInit {
   login: string = localStorage.getItem('userLogin');
   user: UserType | undefined;
+  currentUser: UserType | undefined;
   userId: string = '';
   editMode: boolean = false;
   delete: boolean = true;
@@ -42,6 +43,7 @@ export class EditProfileComponent implements OnInit {
 
       this.user = this.users.find(user => user.login === this.login);
       this.userId = this.user._id;
+      this.currentUser = Object.assign({}, this.user);
 
       this.editForm = this.fb.group({
         name: ['',
@@ -54,14 +56,16 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-  editProfile() {
-    this.editMode = true;
+  toggleEditMode() {
+    this.editMode = !this.editMode;
   }
 
   saveChanges() {
     this.userService.updateUser(this.userId, this.editForm.value).subscribe();
     localStorage.removeItem('userLogin');
     localStorage.setItem('userLogin', this.editForm.value.login);
+    this.currentUser.name = this.editForm.value.name;
+    this.toggleEditMode();
   }
 
   deleteUser() {

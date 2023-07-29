@@ -1,3 +1,10 @@
+mat-card {
+  display: flex;
+  gap: 2rem;
+}
 
+mat-card-title {
+  align-self: center;
+}
 
 /*# sourceMappingURL=edit-profile.component.css.map */
