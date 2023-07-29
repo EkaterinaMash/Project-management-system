@@ -1,4 +1,10 @@
-div {
+.columns-container {
+  display: grid;
+  gap: 2rem;
+  justify-items: center;
+}
+
+.columns-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -9,4 +15,9 @@ div {
 app-column-item {
   text-align: center;
   display: grid;
+}
+
+.create-column-button {
+  font-size: 1.8rem;
+  color: whitesmoke;
 }

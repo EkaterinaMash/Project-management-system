@@ -1,3 +1,20 @@
+mat-card {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: start;
+  background-color: white;
+}
 
+mat-card-title {
+  font-size: 1.6rem;
+}
+
+mat-card-title, mat-card-content {
+  padding: 0 1rem;
+}
+
+mat-card-actions {
+  justify-self: end;
+}
 
 /*# sourceMappingURL=task-item.component.css.map */

@@ -1,42 +1,45 @@
 <ng-container>
-  <div class="column-title">
-    <h4 *ngIf="!editMode" (click)="toggleEditMode()">{{column?.title}}</h4>
-    <form action="" *ngIf="editMode" [formGroup]="editTitleForm">
-      <mat-form-field>
-        <mat-label>Title</mat-label>
-        <input matInput formControlName="title">
-        <mat-error
-          *ngIf="editTitleForm.get('title').hasError('minlength') ||
+  <mat-card>
+    <div class="column-title">
+      <mat-card-title *ngIf="!editMode" (click)="toggleEditMode()">{{column?.title}}</mat-card-title>
+      <form action="" *ngIf="editMode" [formGroup]="editTitleForm">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title">
+          <mat-error
+            *ngIf="editTitleForm.get('title').hasError('minlength') ||
                editTitleForm.get('title').hasError('maxlength')">
-          The title length should be from 5 to 30 letters.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="cdk-visually-hidden">
-        <mat-label>Order</mat-label>
-        <input matInput formControlName="order" [value]="column.order">
-      </mat-form-field>
-      <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">Submit</button>
-      <button mat-button (click)="toggleEditMode()">Cancel</button>
-    </form>
-  </div>
-
-  <div class="tasks-list">
-    <div cdkDropList
-         [cdkDropListData]="currentColumnTasks"
-         (cdkDropListDropped)="dropTask($event)"
-         [attr.id]="columnId">
-      <app-task-item
-        *ngFor="let task of currentColumnTasks"
-        [task]="task" [columnId]="columnId"
-        cdkDrag
-        (deleteTaskEvent)="deleteTask($event)">
-      </app-task-item>
+            The title length should be from 5 to 30 letters.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="cdk-visually-hidden">
+          <mat-label>Order</mat-label>
+          <input matInput formControlName="order" [value]="column.order">
+        </mat-form-field>
+        <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">Submit</button>
+        <button mat-button (click)="toggleEditMode()">Cancel</button>
+      </form>
     </div>
-  </div>
 
-  <div class="column-buttons">
-    <button mat-button (click)="createTask()">Create task</button>
-    <button mat-button (click)="deleteColumn()">Delete column</button>
-  </div>
+    <mat-card-content class="tasks-list">
+      <div class="tasks-list"
+           cdkDropList
+           [cdkDropListData]="currentColumnTasks"
+           (cdkDropListDropped)="dropTask($event)"
+           [attr.id]="columnId">
+        <app-task-item
+          *ngFor="let task of currentColumnTasks"
+          [task]="task" [columnId]="columnId"
+          cdkDrag
+          (deleteTaskEvent)="deleteTask($event)">
+        </app-task-item>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="column-buttons">
+      <button mat-button (click)="createTask()">Create task</button>
+      <button mat-button (click)="deleteColumn()">Delete column</button>
+    </mat-card-actions>
+  </mat-card>
 </ng-container>
 

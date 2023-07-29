@@ -1,4 +1,19 @@
+.board-page {
+  display: grid;
+  gap: 1.6rem;
+}
+
+app-boards-list {
+  display: grid;
+  gap: 1rem;
+}
+
 app-add-column {
   width: 500px;
   height: 100px;
+}
+
+button {
+  font-size: 1.6rem;
+  padding: 0.5rem;
 }
