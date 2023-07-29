@@ -6,4 +6,44 @@
   height: 5rem;
 }
 
+.burger-container {
+  display: none;
+}
+@media (max-width: 720px) {
+  .burger-container {
+    display: flex;
+    position: relative;
+  }
+}
+
+.burger-items {
+  display: grid;
+  padding: 1rem;
+  gap: 2rem;
+  justify-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  background-color: white;
+}
+.burger-items button {
+  width: 5rem;
+}
+
+.navigation-container {
+  display: flex;
+}
+@media (max-width: 720px) {
+  .navigation-container {
+    display: none;
+  }
+}
+
+.burger-menu img {
+  width: 4rem;
+  height: 4rem;
+}
+
 /*# sourceMappingURL=header.component.css.map */

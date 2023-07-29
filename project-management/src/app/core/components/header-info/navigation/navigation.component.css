@@ -4,6 +4,11 @@
   justify-content: space-evenly;
   align-items: center;
 }
+@media (max-width: 720px) {
+  .navigation {
+    width: 20rem;
+  }
+}
 
 a {
   display: block;

@@ -7,11 +7,16 @@ import {AuthService} from "../../../shared/services/auth.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  logged = false;
+  logged: boolean = false;
+  burgerOpened: boolean = false;
 
   constructor(private authService: AuthService) {
   }
   checkUserLogged() : boolean {
     return this.authService.isLoggedIn;
+  }
+
+  burgerMenuToggle() {
+    this.burgerOpened = !this.burgerOpened;
   }
 }
