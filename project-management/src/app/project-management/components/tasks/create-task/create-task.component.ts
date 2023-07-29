@@ -23,7 +23,6 @@ export class CreateTaskComponent implements OnInit {
   taskOrder: number;
   boardId: string;
   columnId: string;
-  created: boolean = false;
 
   constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: any,
               private dialogRef: MatDialogRef<CreateTaskComponent>,
@@ -54,7 +53,6 @@ export class CreateTaskComponent implements OnInit {
           this.store.dispatch(addTask({newTask: data}));
         });
       this.dialogRef.close();
-      this.created = true;
     }
   }
 

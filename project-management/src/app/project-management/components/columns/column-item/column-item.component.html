@@ -12,10 +12,6 @@
             The title length should be from 5 to 30 letters.
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="cdk-visually-hidden">
-          <mat-label>Order</mat-label>
-          <input matInput formControlName="order" [value]="column.order">
-        </mat-form-field>
         <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">Submit</button>
         <button mat-button (click)="toggleEditMode()">Cancel</button>
       </form>

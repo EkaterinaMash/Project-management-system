@@ -1,6 +1,6 @@
 <ng-container>
   <h3>Create new board</h3>
-  <form [formGroup]="createBoardForm" *ngIf="!created">
+  <form [formGroup]="createBoardForm">
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input matInput value="" formControlName="title" required>
@@ -10,19 +10,6 @@
         The title length should be from 5 to 30 letters.
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Owner</mat-label>
-      <input matInput value="" formControlName="owner" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Users</mat-label>
-      <input matInput value="" formControlName="users" required>
-    </mat-form-field>
+    <button mat-button type="submit" [disabled]="createBoardForm.invalid" (click)="onSubmit()">Create board</button>
   </form>
-  <p *ngIf="created">New board created!</p>
-
-  <mat-dialog-actions>
-    <button mat-button (click)="onCreateBoard()" *ngIf="!created">Create board</button>
-    <button mat-button mat-dialog-close>Close</button>
-  </mat-dialog-actions>
 </ng-container>

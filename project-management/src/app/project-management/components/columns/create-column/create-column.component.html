@@ -1,6 +1,6 @@
 <ng-container>
   <h3>Create new column</h3>
-  <form [formGroup]="createColumnForm" *ngIf="!created">
+  <form [formGroup]="createColumnForm">
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input matInput formControlName="title">
@@ -10,12 +10,6 @@
         The title length should be from 5 to 30 letters.
       </mat-error>
     </mat-form-field>
-    <mat-form-field class="cdk-visually-hidden">
-      <mat-label>Order</mat-label>
-      <input matInput formControlName="order" [value]="this.columnOrder">
-    </mat-form-field>
+    <button mat-button type="submit" [disabled]="createColumnForm.invalid" (click)="onSubmit()">Submit</button>
   </form>
-  <button mat-button (click)="onSubmit()" *ngIf="!created">Submit</button>
-  <p *ngIf="created">The column is created!</p>
-  <button mat-button mat-dialog-close>Close</button>
 </ng-container>

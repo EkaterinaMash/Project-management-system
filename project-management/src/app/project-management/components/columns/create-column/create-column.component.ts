@@ -20,7 +20,6 @@ export class CreateColumnComponent implements OnInit {
 
   columns: ColumnType[] | undefined;
   columnOrder: number;
-  created: boolean = false;
   boardId: string;
 
   constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: any,
@@ -52,7 +51,6 @@ export class CreateColumnComponent implements OnInit {
         });
     }
     this.dialogRef.close();
-    this.created = true;
   }
 
   generateColumnOrder() {

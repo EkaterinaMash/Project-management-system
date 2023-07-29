@@ -5,6 +5,7 @@ import {Store} from "@ngrx/store";
 import {BoardType} from "../../../../shared/types/board-type.model";
 import {BoardState} from "../../../../store/board-state.model";
 import {addNewBoard} from "../../../../store/actions/board.action";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-create-board',
@@ -13,35 +14,30 @@ import {addNewBoard} from "../../../../store/actions/board.action";
 })
 export class CreateBoardComponent implements OnInit {
   createBoardForm!: FormGroup;
-  created: boolean = false;
 
   constructor(private fb: FormBuilder,
               private boardService: BoardService,
-              private store: Store<BoardState>) {
+              private store: Store<BoardState>,
+              private dialogRef: MatDialogRef<CreateBoardComponent>) {
   }
 
   ngOnInit(): void {
     this.createBoardForm =this.fb.group({
       title: ['',
         [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-      owner: ['', [Validators.required]],
-      users: [[], [Validators.required]],
+      owner: ['owner'],
+      users: [['users']],
     })
   }
 
-  onCreateBoard(){
+  onSubmit(){
     if (this.createBoardForm?.valid) {
       this.boardService
         .createBoard(this.createBoardForm.value)
         .subscribe((data: BoardType) => {
           this.store.dispatch(addNewBoard({newBoard: data}));
-          this.created = true;
         });
     }
+    this.dialogRef.close();
   }
-
-  /*get title() {
-    return this.createBoardForm!.get('title');
-  }*/
-
 }
