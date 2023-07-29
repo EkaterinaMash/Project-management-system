@@ -4,7 +4,9 @@ mat-card {
   gap: 1.5rem;
   justify-items: center;
   background-color: cadetblue;
+  overflow: auto;
 }
+
 
 mat-card-title {
   padding: 1rem;
