@@ -1,4 +1,9 @@
 <main>
   <h3>Project management system will help you to achieve your goals!</h3>
   <p>With help of this app you can create your own projects, add tasks and manage their execution.</p>
+  <button mat-button (click)="clickStart()" *ngIf="!loggedOut">Start</button>
+  <p *ngIf="loggedOut">Register to start! <a routerLink="/signup"> Sign up.</a></p>
+  <p *ngIf="loggedOut">Already registered? <a routerLink="/login"> Log in!</a></p>
+  <p>This app is created by <a href="https://github.com/EkaterinaMash">Ekaterina Mashinskaia</a> as an angular task at
+    <a href="https://rs.school/angular/">UpSkillMe</a> course.</p>
 </main>

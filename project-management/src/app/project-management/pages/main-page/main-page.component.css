@@ -3,4 +3,16 @@ main {
   height: 80%;
 }
 
+button {
+  font-size: 1.8rem;
+  background-color: cadetblue;
+  color: whitesmoke !important;
+  border-radius: 1.5rem;
+  width: 6rem;
+}
+
+a {
+  color: cadetblue;
+}
+
 /*# sourceMappingURL=main-page.component.css.map */

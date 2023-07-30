@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../../shared/services/auth.service";
+import {AuthService} from "../../../../shared/services/auth.service";
 import {Router} from "@angular/router";
-import {GeneralState} from "../../../store/state.model";
+import {GeneralState} from "../../../../store/state.model";
 
 @Component({
   selector: 'app-signup',

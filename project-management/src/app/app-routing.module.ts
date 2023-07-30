@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {MainPageComponent} from "./project-management/pages/main-page/main-page.component";
 import {BoardPageComponent} from "./project-management/pages/board-page/board-page.component";
-import {SignupComponent} from "./project-management/components/signup/signup.component";
+import {SignupComponent} from "./project-management/components/auth/signup/signup.component";
 import {BoardComponent} from "./project-management/components/boards/board/board.component";
 import {CreateColumnComponent} from "./project-management/components/columns/create-column/create-column.component";
 import {LoginComponent} from "./project-management/components/auth/login/login.component";
