@@ -79,4 +79,8 @@ export class EditProfileComponent implements OnInit {
       }
     })
   }
+
+  close() {
+    this.router.navigate(['boards']);
+  }
 }

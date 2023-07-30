@@ -5,38 +5,43 @@
       <p> Name: <span>{{this.currentUser.name}}</span></p>
       <p> Login: <span>{{this.currentUser.login}}</span></p>
     </mat-card-content>
-    <button mat-button (click)="toggleEditMode()">Edit</button>
+    <mat-card-actions>
+      <button mat-button (click)="toggleEditMode()">Edit</button>
+      <button mat-button (click)="deleteUser()">Delete user</button>
+      <button mat-button (click)="close()">Close</button>
+    </mat-card-actions>
   </mat-card>
 
-  <form action="" [formGroup]="editForm" *ngIf="editMode">
-    <mat-form-field>
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name">
-      <mat-error *ngIf=
-                   "editForm.get('name').hasError('minlength') ||editForm.get('name').hasError('maxlength')">
-        The name length should be 5-15 letters
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Login</mat-label>
-      <input matInput formControlName="login">
-      <mat-error *ngIf=
-                   "editForm.get('login').hasError('minlength') ||editForm.get('login').hasError('maxlength')">
-        The login length should be 5-15 letters
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password">
-      <mat-error *ngIf=
-                   "editForm.get('password').hasError('minlength') ||editForm.get('password').hasError('maxlength')">
-        The password length should be 7-15 letters
-      </mat-error>
-    </mat-form-field>
-    <button mat-button type="submit" (click)="saveChanges()">Save changes</button>
-  </form>
-  <mat-card-actions>
-    <button mat-button (click)="toggleEditMode()" *ngIf="editMode">Close</button>
-    <button mat-button (click)="deleteUser()" *ngIf="!editMode">Delete user</button>
-  </mat-card-actions>
+  <mat-card *ngIf="editMode">
+    <form action="" [formGroup]="editForm">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf=
+                     "editForm.get('name').hasError('minlength') ||editForm.get('name').hasError('maxlength')">
+          The name length should be 5-15 letters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input matInput formControlName="login">
+        <mat-error *ngIf=
+                     "editForm.get('login').hasError('minlength') ||editForm.get('login').hasError('maxlength')">
+          The login length should be 5-15 letters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password">
+        <mat-error *ngIf=
+                     "editForm.get('password').hasError('minlength') ||editForm.get('password').hasError('maxlength')">
+          The password length should be 7-15 letters
+        </mat-error>
+      </mat-form-field>
+      <button mat-button type="submit" (click)="saveChanges()">Save changes</button>
+    </form>
+    <mat-card-actions>
+      <button mat-button (click)="toggleEditMode()">Close</button>
+    </mat-card-actions>
+  </mat-card>
 </ng-container>
