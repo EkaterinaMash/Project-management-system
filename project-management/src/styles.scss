@@ -22,4 +22,11 @@ body {
   gap: 1rem;
   padding: 1rem;
   align-items: center;
+  h4 {
+    margin: 1rem;
+  }
+  form {
+    display: grid;
+    gap: 1.8rem;
+  }
 }

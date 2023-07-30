@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Inject, OnInit, Optional, Output} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TasksService} from "../../../../shared/services/tasks.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {select, Store} from "@ngrx/store";
@@ -36,8 +36,10 @@ export class CreateTaskComponent implements OnInit {
     this.generateTaskOrder();
 
     this.createTaskForm = this.fb.group({
-      title: [''],
-      description: [''],
+      title: ['', [
+        Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+      description: ['', [
+        Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
       order: [this.taskOrder],
       userId: [1],
       users: [['users']]
