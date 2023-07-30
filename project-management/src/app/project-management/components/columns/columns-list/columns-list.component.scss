@@ -19,5 +19,7 @@ app-column-item {
 .create-column-button {
   font-size: 1.8rem;
   color: whitesmoke;
-  justify-self: start;
+  @media (max-height: 740px) {
+    font-size: 1.6rem;
+  }
 }

@@ -1,28 +1,33 @@
 mat-card {
   display: grid;
   position: relative;
-  padding: 2rem 2rem 4rem;
+  padding: 2rem;
   gap: 1.5rem;
   justify-items: center;
   background-color: cadetblue;
-  overflow: auto;
+}
+@media (max-height: 740px) {
+  mat-card {
+    gap: 0.5rem;
+    padding: 1.5rem 2rem 1.5rem;
+  }
 }
 
 mat-card-title {
   justify-self: start;
-  padding: 2rem 2rem 1rem 4rem;
+  padding-left: 1.6rem;
   text-align: center;
   font-size: 2.4rem;
 }
-
-mat-card-content {
-  padding-bottom: 3rem;
+@media (max-height: 740px) {
+  mat-card-title {
+    font-size: 1.8rem;
+  }
 }
 
 mat-card-actions {
-  position: absolute;
-  right: 3rem;
-  bottom: 2rem;
+  justify-self: start;
+  padding: 0 0 0 1.6rem;
 }
 
 mat-card-actions button {

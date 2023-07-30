@@ -3,6 +3,31 @@ mat-card {
   gap: 1rem;
   background-color: whitesmoke;
   min-width: 20rem;
+  max-height: 55vh;
+  overflow-y: scroll;
+}
+@media (max-height: 920px) {
+  mat-card {
+    max-height: 50vh;
+  }
+}
+@media (max-height: 620px) {
+  mat-card {
+    max-height: 45vh;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: whitesmoke;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: cadetblue;
 }
 
 mat-card-title {

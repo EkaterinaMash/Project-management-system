@@ -1,5 +1,10 @@
 img {
   width: 10rem;
 }
+@media (max-width: 740px) {
+  img {
+    width: 6rem;
+  }
+}
 
 /*# sourceMappingURL=course.component.css.map */
