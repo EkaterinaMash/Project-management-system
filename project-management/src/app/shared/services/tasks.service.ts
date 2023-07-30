@@ -25,7 +25,7 @@ export class TasksService {
     return this.http.get(`${this.generateTasksUrl(boardId, columnId)}`)
   }
 
-  updateTasksSet(body) {
+  updateTasksSet(body: TaskBody[]) {
     return this.http.patch(this.setUrl, body);
   }
 

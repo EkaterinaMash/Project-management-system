@@ -22,8 +22,8 @@ export class OpenBoardComponent {
 
   openBoard(board: BoardType) {
     const selectedBoard = board;
+    const id = selectedBoard._id;
     this.store.dispatch(setSelectedBoard({selectedBoard}));
-    this.router.navigate(['boardItem']);
+    this.router.navigate(['boardItem', id]);
   }
-
 }

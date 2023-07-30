@@ -4,7 +4,6 @@ import {AuthService} from "../../../../shared/services/auth.service";
 import {Router} from "@angular/router";
 import {GeneralState} from "../../../../store/state.model";
 import {Store} from "@ngrx/store";
-import {getUsers} from "../../../../store/actions/users.actions";
 import {UserType} from "../../../../shared/types/user-type.model";
 
 @Component({
@@ -37,6 +36,6 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     this.authService.login(this.loginForm.value);
-    this.router.navigate(['board']);
+    this.router.navigate(['boards']);
   }
 }

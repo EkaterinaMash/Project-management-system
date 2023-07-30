@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('token') && localStorage.getItem('expireTime')) {
-      this.router.navigate(['board']);
+      this.router.navigate(['boards']);
     }
   }
 }

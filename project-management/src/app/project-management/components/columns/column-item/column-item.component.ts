@@ -4,7 +4,7 @@ import {ColumnType} from "../../../../shared/types/column-type.model";
 import {GeneralState} from "../../../../store/state.model";
 import {select, Store} from "@ngrx/store";
 import {Router} from "@angular/router";
-import {clearTasks, getTasks, removeColumn, setSelectedColumn} from "../../../../store/actions/column.actions";
+import {clearTasks, getTasks, removeColumn} from "../../../../store/actions/column.actions";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalComponent} from "../../../../shared/components/modal/modal.component";
@@ -15,7 +15,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Subscription} from "rxjs";
 import {selectColumnTasks} from "../../../../store/selectors/selectors";
-
 
 @Component({
   selector: 'app-column-item',
@@ -145,7 +144,7 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
   deleteTask(deletedTask: TaskType) {
     const taskIndex = this.currentColumnTasks.indexOf(deletedTask);
     this.currentColumnTasks.splice(taskIndex, 1);
-    for (let i=taskIndex; i<this.currentColumnTasks.length; i++) {
+    for (let i = taskIndex; i < this.currentColumnTasks.length; i++) {
       this.formTasksBody(this.currentColumnTasks[i], i);
     }
   }

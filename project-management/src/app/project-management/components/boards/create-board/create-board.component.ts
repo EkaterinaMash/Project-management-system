@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {BoardService} from "../../../../shared/services/board.service";
 import {Store} from "@ngrx/store";
 import {BoardType} from "../../../../shared/types/board-type.model";
@@ -22,7 +22,7 @@ export class CreateBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createBoardForm =this.fb.group({
+    this.createBoardForm = this.fb.group({
       title: ['',
         [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
       owner: ['owner'],
@@ -30,7 +30,7 @@ export class CreateBoardComponent implements OnInit {
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     if (this.createBoardForm?.valid) {
       this.boardService
         .createBoard(this.createBoardForm.value)

@@ -3,7 +3,6 @@ import {AuthService} from "../../../../shared/services/auth.service";
 import {GeneralState} from "../../../../store/state.model";
 import {select, Store} from "@ngrx/store";
 import {UserType} from "../../../../shared/types/user-type.model";
-import {getUsers} from "../../../../store/actions/users.actions";
 import {selectUsers} from "../../../../store/selectors/selectors";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../shared/services/user.service";

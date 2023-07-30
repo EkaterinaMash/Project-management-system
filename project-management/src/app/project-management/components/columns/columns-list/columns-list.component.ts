@@ -27,7 +27,8 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
   constructor(private store: Store<GeneralState>,
               private router: Router,
               private columnService: ColumnService,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.serviceSub = this.columnService
@@ -65,7 +66,7 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
     if (this.serviceSub) {
       if (this.dragged && this.columns.length) {
         this.columns.forEach((column, index) => {
-          let currentColumn : ColumnType = {};
+          let currentColumn: ColumnType = {};
           currentColumn.order = index;
           currentColumn._id = column._id;
           this.columnBody.push(currentColumn);

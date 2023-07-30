@@ -6,19 +6,17 @@ import {BoardPageComponent} from "./project-management/pages/board-page/board-pa
 import {SignupComponent} from "./project-management/components/signup/signup.component";
 import {BoardComponent} from "./project-management/components/boards/board/board.component";
 import {CreateColumnComponent} from "./project-management/components/columns/create-column/create-column.component";
-import {ColumnsPageComponent} from "./project-management/pages/columns-page/columns-page.component";
 import {LoginComponent} from "./project-management/components/auth/login/login.component";
 import {EditProfileComponent} from "./project-management/components/auth/edit-profile/edit-profile.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'main', pathMatch: 'full'},
   {path: 'main', component: MainPageComponent},
-  {path: 'board', component: BoardPageComponent},
+  {path: 'boards', component: BoardPageComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'boardItem', component: BoardComponent},
+  {path: 'boardItem/:id', component: BoardComponent},
   {path: 'createColumn', component: CreateColumnComponent},
-  {path: 'columns', component: ColumnsPageComponent},
   {path: 'editProfile', component: EditProfileComponent }
 ]
 

@@ -5,7 +5,3 @@ export interface ColumnType {
   order?: number,
 }
 
-export interface ColumnData {
-  column: ColumnType,
-  _id: string
-}

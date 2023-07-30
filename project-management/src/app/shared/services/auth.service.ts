@@ -8,7 +8,6 @@ import {UserType} from "../types/user-type.model";
 import {Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
 import {MatDialog} from "@angular/material/dialog";
-import {ErrorInterceptor} from "../interseptors/error.interceptor";
 import {ErrorMessageComponent} from "../components/error-message/error-message.component";
 
 @Injectable({
@@ -45,7 +44,6 @@ export class AuthService {
           this.logout();
         }, this.tokenExpireTime);
       })
-
   }
 
   logout(): void {
@@ -66,18 +64,8 @@ export class AuthService {
     return token !== null;
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get(this.usersUrl);
-  }
-
-  getToken(): Observable<string | null> {
-    return of(sessionStorage.getItem('token') ? sessionStorage.getItem('token') : null);
-  }
-
-
   handleError(error) {
     let errorMessage = '';
-    console.log(error);
     if (error.error.statusCode === 401) {
       errorMessage = `Error: ${error.error.message}!\nInvalid authentification credentials for the target resourse.`
     } else if (error.error.statusCode === 409) {

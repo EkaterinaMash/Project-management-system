@@ -7,7 +7,6 @@ import {GeneralState} from "../../../../store/state.model";
 import {selectColumnTasks} from "../../../../store/selectors/selectors";
 import {TaskType} from "../../../../shared/types/task-type.model";
 import {addTask} from "../../../../store/actions/column.actions";
-import {logout} from "../../../../store/actions/auth.actions";
 
 @Component({
   selector: 'app-create-task',

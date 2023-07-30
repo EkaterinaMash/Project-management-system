@@ -1,21 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BoardType} from "../../../../shared/types/board-type.model";
 import {select, Store} from "@ngrx/store";
 import {GeneralState} from "../../../../store/state.model";
 import {Router} from "@angular/router";
-import {selectBoard, selectBoardColumns} from "../../../../store/selectors/selectors";
+import {selectBoard} from "../../../../store/selectors/selectors";
 import {BoardService} from "../../../../shared/services/board.service";
 import {take} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalComponent} from "../../../../shared/components/modal/modal.component";
-import {CreateColumnComponent} from "../../columns/create-column/create-column.component";
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit{
+export class BoardComponent implements OnInit {
   board: BoardType | undefined
   delete: boolean = false;
 
@@ -23,6 +22,7 @@ export class BoardComponent implements OnInit{
               private router: Router,
               private boardService: BoardService,
               private dialog: MatDialog) {
+    if (!router.navigated) router.navigate(['board']);
   }
 
   ngOnInit() {
@@ -41,8 +41,7 @@ export class BoardComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       this.delete = result.data;
-      if (this.delete) this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe()});
+      if (this.delete) this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe()
+    });
   }
-
-
 }

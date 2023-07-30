@@ -7,7 +7,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {AppRoutingModule} from "../app-routing.module";
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule} from "@angular/router";
 import {CreateBoardComponent} from './components/boards/create-board/create-board.component';
 import {MatCardModule} from "@angular/material/card";
 import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material/dialog";
@@ -18,15 +18,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { CreateColumnComponent } from './components/columns/create-column/create-column.component';
 import { OpenBoardComponent } from './components/boards/open-board/open-board.component';
 import { BoardComponent } from './components/boards/board/board.component';
-import { ColumnsPageComponent } from './pages/columns-page/columns-page.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { EditProfileComponent } from './components/auth/edit-profile/edit-profile.component';
 import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
-import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 import { TaskItemComponent } from './components/tasks/task-item/task-item.component';
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {ErrorInterceptor} from "../shared/interseptors/error.interceptor";
 import { EditTaskComponent } from './components/tasks/edit-task/edit-task.component';
 
 @NgModule({
@@ -41,11 +37,9 @@ import { EditTaskComponent } from './components/tasks/edit-task/edit-task.compon
     CreateColumnComponent,
     OpenBoardComponent,
     BoardComponent,
-    ColumnsPageComponent,
     LoginComponent,
     EditProfileComponent,
     CreateTaskComponent,
-    TasksListComponent,
     TaskItemComponent,
     EditTaskComponent,
   ],
@@ -63,12 +57,9 @@ import { EditTaskComponent } from './components/tasks/edit-task/edit-task.compon
         CdkDropList,
         CdkDrag,
         CdkDropListGroup,
-        //StoreModule.forFeature('boards123', boardsReduceraaaa),
-        // StoreModule.forFeature('boardsList', boardsListReducer)
     ],
   providers: [
     {provide: MAT_DIALOG_DATA, useValue: {}},
-  //  {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
   ],
   exports: [
     RouterModule,

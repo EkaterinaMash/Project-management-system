@@ -1,10 +1,8 @@
 import {createSelector, createFeatureSelector, createReducer} from "@ngrx/store";
 import {BoardType} from "../../shared/types/board-type.model";
 import {GeneralState} from "../state.model";
-import {BoardsState, BoardState, SelectedBoardState} from "../board-state.model";
-import {Board} from "../board.model";
+import {SelectedBoardState} from "../board-state.model";
 import {UserState} from "../users-state.model";
-
 
 export const selectBoards = createFeatureSelector<BoardType[]>('boards');
 export const selectBoardState = (state: GeneralState) => state.selectedBoard;
@@ -20,7 +18,6 @@ export const selectBoard = createSelector(
 export const selectColumn = createSelector(
   selectBoardState,
   (state: SelectedBoardState) => {
-    console.log(state.selectedBoard);
     return state.selectedBoard?.columns
   }
 );
