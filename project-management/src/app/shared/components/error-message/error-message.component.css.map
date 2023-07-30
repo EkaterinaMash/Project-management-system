@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"error-message.component.css"}
+{"version":3,"sourceRoot":"","sources":["error-message.component.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE","file":"error-message.component.css"}

@@ -12,8 +12,10 @@
             The title length should be from 5 to 30 letters.
           </mat-error>
         </mat-form-field>
-        <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">Submit</button>
-        <button mat-button (click)="toggleEditMode()">Cancel</button>
+        <div class="form-buttons">
+          <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">Submit</button>
+          <button mat-button (click)="toggleEditMode()">Cancel</button>
+        </div>
       </form>
     </div>
 
@@ -34,7 +36,7 @@
 
     <mat-card-actions class="column-buttons">
       <button mat-button (click)="createTask()">Create task</button>
-      <button mat-button (click)="deleteColumn()">Delete column</button>
+      <button mat-button (click)="deleteColumn()" class="delete-button">Delete column</button>
     </mat-card-actions>
   </mat-card>
 </ng-container>

@@ -1,16 +1,16 @@
 <ng-container>
-  <h3>Create new task</h3>
-
-  <form [formGroup]="createTaskForm">
-    <mat-form-field>
-      <mat-label>Title</mat-label>
-      <input matInput formControlName="title">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <input matInput formControlName="description">
-    </mat-form-field>
-
-    <button type="submit" [disabled]="createTaskForm.invalid" (click)="onSubmit()">Submit</button>
-  </form>
+  <div class="form-container">
+    <h3>Create new task</h3>
+    <form [formGroup]="createTaskForm">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
+      <button mat-button type="submit" [disabled]="createTaskForm.invalid" (click)="onSubmit()">Submit</button>
+    </form>
+  </div>
 </ng-container>

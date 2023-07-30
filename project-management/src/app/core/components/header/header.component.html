@@ -4,7 +4,7 @@
       <img src="../../../../assets/icons/ui.png" alt="Burger menu">
     </div>
     <div *ngIf="burgerOpened" class="burger-items">
-      <app-language-toggle (click)="burgerMenuToggle()"></app-language-toggle>
+      <app-language-toggle></app-language-toggle>
       <app-navigation (click)="burgerMenuToggle()"></app-navigation>
       <button mat-button (click)="burgerMenuToggle()">Close</button>
     </div>

@@ -11,6 +11,13 @@ body {
   margin: 1rem;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 1.6rem;
+  background-color: whitesmoke;
 }
 
+.form-container {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
 

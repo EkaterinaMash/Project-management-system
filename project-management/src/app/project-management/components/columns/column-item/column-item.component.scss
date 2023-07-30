@@ -13,3 +13,12 @@ mat-card-title {
   display: grid;
   gap: 0.5rem;
 }
+
+form {
+  display: grid;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+}

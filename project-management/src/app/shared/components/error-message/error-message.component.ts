@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-error-message',
@@ -7,6 +7,10 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
   styleUrls: ['./error-message.component.scss']
 })
 export class ErrorMessageComponent {
-constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+            private dialogRef: MatDialogRef<ErrorMessageComponent>) {
+}
+close() {
+  this.dialogRef.close();
 }
 }

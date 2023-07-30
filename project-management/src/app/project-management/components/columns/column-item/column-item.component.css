@@ -14,4 +14,13 @@ mat-card-title {
   gap: 0.5rem;
 }
 
+form {
+  display: grid;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 /*# sourceMappingURL=column-item.component.css.map */

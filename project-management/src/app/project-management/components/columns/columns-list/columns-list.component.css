@@ -19,6 +19,7 @@ app-column-item {
 .create-column-button {
   font-size: 1.8rem;
   color: whitesmoke;
+  justify-self: start;
 }
 
 /*# sourceMappingURL=columns-list.component.css.map */
