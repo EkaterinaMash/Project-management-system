@@ -21,7 +21,7 @@ export class EditProfileComponent implements OnInit {
   currentUser: UserType | undefined;
   userId: string = '';
   editMode: boolean = false;
-  delete: boolean = true;
+  delete: boolean = false;
   @Input() users: UserType[] = [];
   editForm!: FormGroup;
 
@@ -72,12 +72,14 @@ export class EditProfileComponent implements OnInit {
       data: {title: this.user.name, item: 'user'}
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.delete = result.data;
-      if (this.delete) {
-        this.authService.logout();
-        this.userService.deleteUser(this.user._id).subscribe()
+      if (result) {
+        this.delete = result.data;
+        if (this.delete) {
+          this.authService.logout();
+          this.userService.deleteUser(this.user._id).subscribe();
+        }
       }
-    })
+    });
   }
 
   close() {

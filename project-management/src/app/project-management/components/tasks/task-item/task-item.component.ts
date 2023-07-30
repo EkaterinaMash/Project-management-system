@@ -38,17 +38,19 @@ export class TaskItemComponent implements OnInit {
       data: {title: this.task.title, item: 'task'}
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.delete = result.data;
-      if (this.delete) {
-        this.tasksService
-          .deleteTask(this.boardId, this.columnId, this.taskId)
-          .subscribe((data: TaskType) => {
-            this.store.dispatch(removeTask({removedTask: data}));
-          });
-        this.deleteTaskEvent.emit(this.task);
-        this.delete = false;
+      if (result) {
+        this.delete = result.data;
+        if (this.delete) {
+          this.tasksService
+            .deleteTask(this.boardId, this.columnId, this.taskId)
+            .subscribe((data: TaskType) => {
+              this.store.dispatch(removeTask({removedTask: data}));
+            });
+          this.deleteTaskEvent.emit(this.task);
+          this.delete = false;
+        }
       }
-    })
+    });
   }
 
   editTask() {

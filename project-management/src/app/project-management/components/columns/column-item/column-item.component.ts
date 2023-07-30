@@ -154,17 +154,19 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
       data: {title: this.column.title, item: 'column'}
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.delete = result.data;
-      if (this.delete) {
-        this.columnService
-          .deleteColumn(this.boardId, this.columnId)
-          .subscribe((data: ColumnType) => {
-            this.store.dispatch(removeColumn({removedColumn: data}))
-          });
-        this.deleteColumnEvent.emit(this.column);
-        this.delete = false;
+      if (result) {
+        this.delete = result.data;
+        if (this.delete) {
+          this.columnService
+            .deleteColumn(this.boardId, this.columnId)
+            .subscribe((data: ColumnType) => {
+              this.store.dispatch(removeColumn({removedColumn: data}))
+            });
+          this.deleteColumnEvent.emit(this.column);
+          this.delete = false;
+        }
       }
-    })
+    });
   }
 
   toggleEditMode() {

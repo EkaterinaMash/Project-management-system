@@ -40,8 +40,11 @@ export class BoardComponent implements OnInit {
       data: {title: this.board.title, item: 'board'}
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.delete = result.data;
-      if (this.delete) this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe()
+      if (result) {
+        this.delete = result.data;
+        if (this.delete) this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe();
+        this.delete = false;
+      }
     });
   }
 }
