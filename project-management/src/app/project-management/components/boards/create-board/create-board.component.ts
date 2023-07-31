@@ -22,11 +22,13 @@ export class CreateBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const user = localStorage.getItem('userLogin');
+
     this.createBoardForm = this.fb.group({
       title: ['',
         [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-      owner: ['owner'],
-      users: [['users']],
+      owner: [user],
+      users: [[user]],
     })
   }
 

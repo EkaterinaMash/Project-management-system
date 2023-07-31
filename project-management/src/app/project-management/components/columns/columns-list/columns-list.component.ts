@@ -19,8 +19,7 @@ import {MatDialog} from "@angular/material/dialog";
 export class ColumnsListComponent implements OnInit, OnDestroy {
   @Input() boardId: string;
   serviceSub: Subscription;
-  columns: ColumnType[] = []
-  draggedColumns: ColumnType[] = [];
+  columns: ColumnType[] = [];
   dragged: boolean = false;
   columnBody: ColumnType[] = [];
 
@@ -38,14 +37,27 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
         this.store
           .pipe(select(selectBoardColumns))
           .subscribe(value => {
-            this.columns = value.slice().sort((a, b) => a.order - b.order)
+            this.columns = value.slice().sort((a, b) => a.order - b.order);
           });
       });
   }
 
-  deleteColumn(deletedColumn: ColumnType) {
-    const columnIndex = this.columns.indexOf(deletedColumn);
-    this.columns.splice(columnIndex, 1);
+  formColumnsBody(column, index) {
+    const currentColumn: ColumnType = {};
+    currentColumn.order = index;
+    currentColumn._id = column._id;
+    this.columnBody.push(currentColumn);
+  }
+
+  deleteColumn(deletedColumnOrder: number) {
+    this.columns.splice(deletedColumnOrder, 1);
+    if (deletedColumnOrder !== this.columns.length - 1) {
+      for (let i = deletedColumnOrder; i < this.columns.length; i++) {
+        this.formColumnsBody(this.columns[i], i);
+      }
+    }
+    if (this.columnBody.length) this.columnService.updateColumnsSet(this.columnBody).subscribe();
+    this.columnBody = [];
   }
 
   dropColumn(event: CdkDragDrop<ColumnType[]>) {
@@ -66,10 +78,7 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
     if (this.serviceSub) {
       if (this.dragged && this.columns.length) {
         this.columns.forEach((column, index) => {
-          let currentColumn: ColumnType = {};
-          currentColumn.order = index;
-          currentColumn._id = column._id;
-          this.columnBody.push(currentColumn);
+          this.formColumnsBody(column, index);
         });
         this.columnService.updateColumnsSet(this.columnBody).subscribe();
       }

@@ -26,7 +26,7 @@ export class ColumnService {
     return this.http.delete(`${this.url}/${boardId}/columns/${columnId}`);
   }
 
-  updateColumnsSet(body: ColumnType[]) {
+  updateColumnsSet(body: ColumnType) {
     return this.http.patch(this.setUrl, body);
   }
 

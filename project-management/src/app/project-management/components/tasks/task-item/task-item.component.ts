@@ -16,7 +16,7 @@ import {EditTaskComponent} from "../edit-task/edit-task.component";
 export class TaskItemComponent implements OnInit {
   @Input() taskInput: TaskType | undefined;
   @Input() columnId: string;
-  @Output() deleteTaskEvent = new EventEmitter<TaskType>;
+  @Output() deleteTaskEvent = new EventEmitter<number>;
   task: TaskType | undefined;
   boardId: string;
   taskId: string;
@@ -46,7 +46,7 @@ export class TaskItemComponent implements OnInit {
             .subscribe((data: TaskType) => {
               this.store.dispatch(removeTask({removedTask: data}));
             });
-          this.deleteTaskEvent.emit(this.task);
+          this.deleteTaskEvent.emit(this.task.order);
           this.delete = false;
         }
       }

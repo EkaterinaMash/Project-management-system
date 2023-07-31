@@ -23,7 +23,7 @@ import {selectColumnTasks} from "../../../../store/selectors/selectors";
 })
 export class ColumnItemComponent implements OnInit, OnDestroy {
   @Input() inputColumn: ColumnType | undefined;
-  @Output() deleteColumnEvent = new EventEmitter<ColumnType>;
+  @Output() deleteColumnEvent = new EventEmitter<number>;
 
   editTitleForm!: FormGroup;
 
@@ -134,18 +134,22 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
   }
 
   formTasksBody(currentTask, index, columnId?) {
-    const task: TaskBody = {};
-    task._id = currentTask._id;
-    task.order = index;
-    task.columnId = columnId ? columnId : currentTask.columnId;
-    this.tasksBody.push(task);
+      const task: TaskBody = {};
+      task._id = currentTask._id;
+      task.order = index;
+      task.columnId = columnId ? columnId : currentTask.columnId;
+      this.tasksBody.push(task);
   }
 
-  deleteTask(deletedTask: TaskType) {
-    const taskIndex = this.currentColumnTasks.indexOf(deletedTask);
+  deleteTask(deletedTaskOrder: number) {
+    const taskIndex = deletedTaskOrder;
     this.currentColumnTasks.splice(taskIndex, 1);
-    for (let i = taskIndex; i < this.currentColumnTasks.length; i++) {
-      this.formTasksBody(this.currentColumnTasks[i], i);
+    console.log(3, this.currentColumnTasks, taskIndex);
+    if (taskIndex !== this.currentColumnTasks.length) {
+      for (let i = taskIndex; i < this.currentColumnTasks.length; i++) {
+        this.formTasksBody(this.currentColumnTasks[i], i);
+      }
+      this.tasksService.updateTasksSet(this.tasksBody).subscribe();
     }
   }
 
@@ -162,7 +166,7 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
             .subscribe((data: ColumnType) => {
               this.store.dispatch(removeColumn({removedColumn: data}))
             });
-          this.deleteColumnEvent.emit(this.column);
+          this.deleteColumnEvent.emit(this.column.order);
           this.delete = false;
         }
       }

@@ -23,6 +23,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   ngOnInit() {
+    const user = localStorage.getItem('userLogin');
     this.columnId = this.data.columnId;
     this.taskId = this.data.taskId;
     this.boardId = this.data.boardId;
@@ -37,8 +38,8 @@ export class EditTaskComponent implements OnInit {
         Validators.required, Validators.minLength(10), Validators.maxLength(50)
       ]],
       columnId: [this.columnId],
-      userId: [1],
-      users: [['users']]
+      userId: [user],
+      users: [[user]]
     })
   }
 

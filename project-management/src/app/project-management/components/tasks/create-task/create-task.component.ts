@@ -31,6 +31,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   ngOnInit() {
+    const user = localStorage.getItem('userLogin');
     this.boardId = this.data.boardId;
     this.columnId = this.data.columnId;
     this.generateTaskOrder();
@@ -41,8 +42,8 @@ export class CreateTaskComponent implements OnInit {
       description: ['', [
         Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
       order: [this.taskOrder],
-      userId: [1],
-      users: [['users']]
+      userId: [user],
+      users: [[user]]
     })
   }
 

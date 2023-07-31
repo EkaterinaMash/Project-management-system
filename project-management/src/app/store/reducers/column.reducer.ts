@@ -7,7 +7,6 @@ import {
   getTasks,
   removeColumn,
   removeTask,
-  setSelectedColumn
 } from "../actions/column.actions";
 
 export const columnsReducer = createReducer(
@@ -21,10 +20,13 @@ export const columnsReducer = createReducer(
     return clone;
   }),
   on(removeColumn, (state, {removedColumn}) => {
-    const clone = state.slice();
+    const clone = JSON.parse(JSON.stringify(state));
     const columnToRemove = clone.find(column => column._id === removedColumn._id);
     const index = clone.indexOf(columnToRemove);
     clone.splice(index, 1);
+    for (let i = index; i < clone.length; i++) {
+      clone[i].order = i;
+    }
     return clone;
   })
 )
@@ -46,18 +48,9 @@ export const tasksReducer = createReducer(
   }),
   on(removeTask, (state, {removedTask}) => {
     const clone = state.slice();
-    const taskToRemove = clone.find(column => column._id === removedTask._id);
+    const taskToRemove = clone.find(task => task._id === removedTask._id);
     const index = clone.indexOf(taskToRemove);
     clone.splice(index, 1);
     return clone;
   })
 )
-
-/*
-export const selectedColumnReducer = createReducer(
-  initialSelectedColumnState,
-  on(setSelectedColumn, (state, {selectedColumn}) => ({
-    ...state,
-    selectedColumn: selectedColumn
-  }))
-)*/
