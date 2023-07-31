@@ -1,7 +1,7 @@
 import {createAction, createReducer, on} from "@ngrx/store";
 import {initialColumnsState, initialSelectedColumnState, initialTasksState} from "../column-state.model";
 import {
-  addColumn, addTask,
+  addColumn, addTask, changeColumnsOrder,
   clearTasks,
   getColumns,
   getTasks,
@@ -28,6 +28,9 @@ export const columnsReducer = createReducer(
       clone[i].order = i;
     }
     return clone;
+  }),
+  on(changeColumnsOrder, (state, {changedColumns}) => {
+    return changedColumns;
   })
 )
 

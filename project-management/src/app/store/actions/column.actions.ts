@@ -12,6 +12,9 @@ export const removeColumn = createAction(
 )
 export const setSelectedColumn = createAction(
   '[Selected board] set selected column', props<{selectedColumn: ColumnType}>());
+export const changeColumnsOrder = createAction(
+  '[Selected board] change columns order', props<{changedColumns: ColumnType[]}>()
+);
 
 export const getTasks = createAction(
   '[Selected column] get tasks', props<{tasks: TaskType[]}>()
