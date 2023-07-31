@@ -39,6 +39,7 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
           .subscribe(value => {
             this.columns = value.slice().sort((a, b) => a.order - b.order);
           });
+        console.log(this.columns);
       });
   }
 
@@ -68,16 +69,17 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
 
     const changedColumns = JSON.parse(JSON.stringify(this.columns));
     if (previousIndex < currentIndex) {
-      for (let i = previousIndex; i < changedColumns.length; i++) {
+      for (let i = previousIndex; i <= currentIndex; i++) {
         changedColumns[i].order = i;
       }
     }
     if (currentIndex < previousIndex) {
-      for (let i = currentIndex; i < changedColumns.length; i++) {
+      for (let i = currentIndex; i <= previousIndex; i++) {
         changedColumns[i].order = i;
       }
     }
     this.store.dispatch(changeColumnsOrder({changedColumns}));
+    this.store.dispatch(clearTasks());
     this.dragged = true;
   }
 

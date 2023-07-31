@@ -144,7 +144,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
   deleteTask(deletedTaskOrder: number) {
     const taskIndex = deletedTaskOrder;
     this.currentColumnTasks.splice(taskIndex, 1);
-    console.log(3, this.currentColumnTasks, taskIndex);
     if (taskIndex !== this.currentColumnTasks.length) {
       for (let i = taskIndex; i < this.currentColumnTasks.length; i++) {
         this.formTasksBody(this.currentColumnTasks[i], i);
