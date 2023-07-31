@@ -1,6 +1,6 @@
 <ng-container>
   <div class="form-container">
-    <h3>Create new board</h3>
+    <h3>{{"boards.create" | translate}}</h3>
     <form [formGroup]="createBoardForm">
       <mat-form-field>
         <mat-label>Title</mat-label>
@@ -8,11 +8,11 @@
         <mat-error
           *ngIf="createBoardForm.get('title').hasError('minlength') ||
                createBoardForm.get('title').hasError('maxlength')">
-          The title length should be from 5 to 30 letters.
+          {{"error.title"| translate}}
         </mat-error>
       </mat-form-field>
-      <button mat-button type="submit" [disabled]="createBoardForm.invalid" (click)="onSubmit()">Create board</button>
+      <button mat-button type="submit" [disabled]="createBoardForm.invalid" (click)="onSubmit()">{{"buttons.submit"| translate}}</button>
     </form>
-    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button mat-dialog-close>{{"buttons.close" | translate}}</button>
   </div>
 </ng-container>

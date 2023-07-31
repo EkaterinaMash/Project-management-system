@@ -7,7 +7,7 @@ import {selectBoard} from "../../../../store/selectors/selectors";
 import {BoardService} from "../../../../shared/services/board.service";
 import {take} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
-import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {ModalComponent} from "../../modals/modal/modal.component";
 
 @Component({
   selector: 'app-board',
@@ -43,6 +43,7 @@ export class BoardComponent implements OnInit {
       if (result) {
         this.delete = result.data;
         if (this.delete) this.boardService.deleteBoard(this.board._id).pipe(take(1)).subscribe();
+        this.router.navigate(['boards']);
         this.delete = false;
       }
     });

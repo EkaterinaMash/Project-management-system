@@ -1,28 +1,28 @@
 <ng-container>
   <div class="form-container">
-    <h4>Edit task</h4>
+    <h4>{{"tasks.edit" | translate}}</h4>
     <form [formGroup]="editTaskForm" class="form">
       <mat-form-field>
-        <mat-label>Title</mat-label>
+        <mat-label>{{"form.title"| translate}}</mat-label>
         <input matInput formControlName="title">
         <mat-error
           *ngIf="editTaskForm.get('title').hasError('minlength') ||
                editTaskForm.get('title').hasError('maxlength')">
-          The title length should be from 5 to 20 letters.
+          {{"error.title"| translate}}
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Description</mat-label>
+        <mat-label>{{"form.description"| translate}}</mat-label>
         <input matInput formControlName="description">
         <mat-error
           *ngIf="editTaskForm.get('description').hasError('minlength') ||
                editTaskForm.get('description').hasError('maxlength')">
-          The description length should be from 10 to 50 letters.
+          {{"error.description"| translate}}
         </mat-error>
       </mat-form-field>
-      <button mat-button type="submit" [disabled]="editTaskForm.invalid" (click)="onSubmit()">Submit</button>
+      <button mat-button type="submit" [disabled]="editTaskForm.invalid" (click)="onSubmit()">{{"buttons.submit" | translate}}</button>
     </form>
-    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button mat-dialog-close>{{"buttons.close"| translate}}</button>
   </div>
 </ng-container>
 

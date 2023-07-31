@@ -1,7 +1,7 @@
 <ng-container>
   <div class="board-page">
     <app-boards-list [boards]="(boards$ | async)!"></app-boards-list>
-    <button mat-button (click)="openBoardForm()">Create new board</button>
+    <button mat-button (click)="openBoardForm()">{{"boards.create" | translate}}</button>
   </div>
 </ng-container>
 

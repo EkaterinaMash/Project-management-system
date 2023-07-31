@@ -1,6 +1,6 @@
 <ng-container>
   <div class="modal-container">
-    <p>Are you sure that use want to delete the {{data.title}} {{data.item}}?</p>
+    <p><span>{{"modal"| translate}}</span> {{data.title}} {{data.item}}?</p>
     <div class="buttons-container">
       <button mat-button (click)="confirm()">Yes</button>
       <button mat-button (click)="cancel()">No</button>

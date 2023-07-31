@@ -11,6 +11,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {ProjectManagementModule} from "./project-management/project-management.module";
 import {generalState} from "./store/state.model";
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {NgxTranslateModule} from "./shared/translate/translate.module";
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import {generalState} from "./store/state.model";
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreRouterConnectingModule.forRoot(),
     ProjectManagementModule,
+    BsDropdownModule.forRoot(),
+    NgxTranslateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

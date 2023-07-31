@@ -7,7 +7,7 @@ import {selectUsers} from "../../../../store/selectors/selectors";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../shared/services/user.service";
 import {Router} from "@angular/router";
-import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {ModalComponent} from "../../modals/modal/modal.component";
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({

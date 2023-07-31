@@ -11,14 +11,22 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 1.6rem;
-  background-color: whitesmoke;
+  background-color: whitesmoke !important;
   max-height: 95vh;
   overflow-y: hidden;
 }
 
 a {
-  text-decoration: none;
-  color: black;
+  text-decoration: none !important;
+  color: darkcyan !important;
+}
+
+p {
+  font-size: 1.6rem !important;
+}
+
+mat-card-content {
+  font-size: 1.6rem;
 }
 
 .form-container {
@@ -35,3 +43,9 @@ a {
     gap: 1.8rem;
   }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

@@ -4,17 +4,17 @@
       <mat-card-title *ngIf="!editMode" (click)="toggleEditMode()">{{column?.title}}</mat-card-title>
       <form action="" *ngIf="editMode" [formGroup]="editTitleForm">
         <mat-form-field>
-          <mat-label>Title</mat-label>
+          <mat-label>{{"form.title"| translate}}</mat-label>
           <input matInput formControlName="title">
           <mat-error
             *ngIf="editTitleForm.get('title').hasError('minlength') ||
                editTitleForm.get('title').hasError('maxlength')">
-            The title length should be from 5 to 30 letters.
+            {{"error.title"| translate}}
           </mat-error>
         </mat-form-field>
         <div class="form-buttons">
-          <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">Submit</button>
-          <button mat-button (click)="toggleEditMode()">Cancel</button>
+          <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">{{"buttons.submit" | translate}}</button>
+          <button mat-button (click)="toggleEditMode()">{{"buttons.cancel"| translate}}</button>
         </div>
       </form>
     </div>
@@ -35,8 +35,8 @@
     </mat-card-content>
 
     <mat-card-actions class="column-buttons">
-      <button mat-button (click)="createTask()">Create task</button>
-      <button mat-button (click)="deleteColumn()" class="delete-button">Delete column</button>
+      <button mat-button (click)="createTask()">{{"tasks.create" | translate}}</button>
+      <button mat-button (click)="deleteColumn()" class="delete-button">{{"columns.delete" | translate}}</button>
     </mat-card-actions>
   </mat-card>
 </ng-container>

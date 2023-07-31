@@ -6,7 +6,7 @@
     <div *ngIf="burgerOpened" class="burger-items">
       <app-language-toggle></app-language-toggle>
       <app-navigation (click)="burgerMenuToggle()"></app-navigation>
-      <button mat-button (click)="burgerMenuToggle()">Close</button>
+      <button mat-button (click)="burgerMenuToggle()">{{"buttons.close"| translate}}</button>
     </div>
   </div>
 

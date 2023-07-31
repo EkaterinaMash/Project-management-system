@@ -14,6 +14,8 @@ import {RouterModule} from "@angular/router";
 import {MatListModule} from "@angular/material/list";
 import { EditUserComponent } from './components/header-info/edit-user/edit-user.component';
 import { LogOutComponent } from './components/header-info/log-out/log-out.component';
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {NgxTranslateModule} from "../shared/translate/translate.module";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { LogOutComponent } from './components/header-info/log-out/log-out.compon
         MatSlideToggleModule,
         MatButtonModule,
         RouterModule,
-        MatListModule
+        MatListModule,
+        BsDropdownModule,
+        NgxTranslateModule
     ]
 })
 export class CoreModule { }

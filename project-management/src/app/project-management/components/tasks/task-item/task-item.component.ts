@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TaskType} from "../../../../shared/types/task-type.model";
 import {TasksService} from "../../../../shared/services/tasks.service";
-import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {ModalComponent} from "../../modals/modal/modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {removeTask} from "../../../../store/actions/column.actions";
 import {GeneralState} from "../../../../store/state.model";
@@ -63,8 +63,10 @@ export class TaskItemComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.task.title = result.data.title;
-      this.task.description = result.data.description;
+      if (result) {
+        this.task.title = result.data.title;
+        this.task.description = result.data.description;
+      }
     })
   }
 }

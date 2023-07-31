@@ -1,5 +1,5 @@
 <ng-container>
-  <h3>All boards</h3>
+  <h3>{{"boards.list" | translate}}</h3>
   <app-open-board *ngFor="let board of boards; index as i"
                   [board]="board">
   </app-open-board>

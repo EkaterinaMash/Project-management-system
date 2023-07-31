@@ -1,4 +1,5 @@
-import {Component, Inject, LOCALE_ID} from '@angular/core';
+import {Component} from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-language-toggle',
@@ -6,15 +7,21 @@ import {Component, Inject, LOCALE_ID} from '@angular/core';
   styleUrls: ['./language-toggle.component.scss']
 })
 export class LanguageToggleComponent {
-  locales = [
-    {code: 'en', name: 'EN'},
-    {code: 'ru', name: 'RU'}
-  ];
+  appLanguage = 'English';
+  languageList = [
+    {code: 'en', label: 'English'},
+    {code: 'ru', label: 'Русский'}]
 
-  constructor(@Inject(LOCALE_ID) public activeLocale: string) {
+  constructor(private translate: TranslateService) {
   }
 
-  onChange() {
-    this.activeLocale = 'en' ? 'ru' : 'en';
+  changeLanguage(localeCode: string): void {
+    const selectedLanguage = this.languageList
+      .find(language => language.code === localeCode)
+      ?.label.toString();
+    if (selectedLanguage) {
+      this.appLanguage = selectedLanguage;
+      this.translate.use(localeCode);
+    }
   }
 }

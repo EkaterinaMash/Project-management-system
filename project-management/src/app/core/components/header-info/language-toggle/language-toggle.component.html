@@ -1,2 +1,34 @@
-<span>EN</span>
-<mat-slide-toggle (change)="onChange()"></mat-slide-toggle><span>RU</span>
+<div>
+  <span class="spacer"></span>
+  <div class="btn-group" dropdown>
+    <button
+      id="button-animated"
+      dropdownToggle
+      type="button"
+      class="btn btn-link dropdown-toggle"
+      aria-controls="dropdown-animated"
+    >
+      <i class="fa fa-globe" aria-hidden="true"></i>
+      {{ appLanguage }}
+      <span class="caret"></span>
+    </button>
+
+    <ul
+      id="dropdown-animated"
+      *dropdownMenu
+      class="dropdown-menu dropdown-menu-right"
+      role="menu"
+      aria-labelledby="button-animated"
+    >
+      <ng-container *ngFor="let language of languageList">
+        <li role="menuitem">
+          <a
+            class="dropdown-item"
+            (click)="changeLanguage(language.code)">
+            {{ language.label }}
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

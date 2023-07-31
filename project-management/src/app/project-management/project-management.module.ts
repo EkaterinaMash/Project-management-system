@@ -19,11 +19,14 @@ import { CreateColumnComponent } from './components/columns/create-column/create
 import { OpenBoardComponent } from './components/boards/open-board/open-board.component';
 import { BoardComponent } from './components/boards/board/board.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import {ModalComponent} from "./components/modals/modal/modal.component";
+import {ErrorMessageComponent} from "./components/modals/error-message/error-message.component";
 import { EditProfileComponent } from './components/auth/edit-profile/edit-profile.component';
 import { CreateTaskComponent } from './components/tasks/create-task/create-task.component';
 import { TaskItemComponent } from './components/tasks/task-item/task-item.component';
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 import { EditTaskComponent } from './components/tasks/edit-task/edit-task.component';
+import {NgxTranslateModule} from "../shared/translate/translate.module";
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import { EditTaskComponent } from './components/tasks/edit-task/edit-task.compon
     ColumnItemComponent,
     ColumnsListComponent,
     CreateColumnComponent,
+    ModalComponent,
+    ErrorMessageComponent,
     SignupComponent,
     OpenBoardComponent,
     BoardComponent,
@@ -57,6 +62,7 @@ import { EditTaskComponent } from './components/tasks/edit-task/edit-task.compon
         CdkDropList,
         CdkDrag,
         CdkDropListGroup,
+        NgxTranslateModule,
     ],
   providers: [
     {provide: MAT_DIALOG_DATA, useValue: {}},

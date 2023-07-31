@@ -1,26 +1,21 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { ModalComponent } from './components/modal/modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
-import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {NgxTranslateModule} from "./translate/translate.module";
 
 
 @NgModule({
-  declarations: [
-    ModalComponent,
-    ErrorMessageComponent,
+  declarations: [],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    NgxTranslateModule
   ],
-    imports: [
-        CommonModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatFormFieldModule
-    ],
-  exports: [
-    ModalComponent
-  ]
+  exports: []
 })
 export class SharedModule {
 }

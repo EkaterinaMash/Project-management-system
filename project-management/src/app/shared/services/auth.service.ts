@@ -8,7 +8,7 @@ import {UserType} from "../types/user-type.model";
 import {Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
 import {MatDialog} from "@angular/material/dialog";
-import {ErrorMessageComponent} from "../components/error-message/error-message.component";
+import {ErrorMessageComponent} from "../../project-management/components/modals/error-message/error-message.component";
 
 @Injectable({
   providedIn: 'root'

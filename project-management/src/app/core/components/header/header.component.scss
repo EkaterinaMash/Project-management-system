@@ -33,6 +33,7 @@
 
 .navigation-container {
   display: flex;
+  align-items: center;
   @media (max-width: 720px) {
     display: none;
   }

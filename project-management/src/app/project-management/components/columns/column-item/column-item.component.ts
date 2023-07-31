@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 import {clearTasks, getTasks, removeColumn} from "../../../../store/actions/column.actions";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {ModalComponent} from "../../modals/modal/modal.component";
 import {CreateTaskComponent} from "../../tasks/create-task/create-task.component";
 import {TasksService} from "../../../../shared/services/tasks.service";
 import {TaskBody, TaskType} from "../../../../shared/types/task-type.model";
