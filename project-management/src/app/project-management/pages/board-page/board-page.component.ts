@@ -1,10 +1,7 @@
-import {AfterContentChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {BoardType} from "../../../shared/types/board-type.model";
-import {Observable} from "rxjs";
 import {selectBoards} from "../../../store/selectors/selectors";
 import {BoardService} from "../../../shared/services/board.service";
-import {ChangeDetectorRef} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateBoardComponent} from "../../components/boards/create-board/create-board.component";
 

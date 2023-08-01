@@ -4,7 +4,7 @@ import {ColumnType} from "../../../../shared/types/column-type.model";
 import {GeneralState} from "../../../../store/state.model";
 import {select, Store} from "@ngrx/store";
 import {Router} from "@angular/router";
-import {clearTasks, getTasks, removeColumn} from "../../../../store/actions/column.actions";
+import { getTasks, removeColumn} from "../../../../store/actions/column.actions";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalComponent} from "../../modals/modal/modal.component";

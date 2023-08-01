@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ColumnService} from "../../../../shared/services/column.service";
 import {select, Store} from "@ngrx/store";
 import {GeneralState} from "../../../../store/state.model";
-import {BoardType} from "../../../../shared/types/board-type.model";
 import {selectBoardColumns} from "../../../../store/selectors/selectors";
 import {ColumnType} from "../../../../shared/types/column-type.model";
 import {BoardService} from "../../../../shared/services/board.service";
