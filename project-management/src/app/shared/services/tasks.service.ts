@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {TaskBody, TaskType} from "../types/task-type.model";
 import {Observable} from "rxjs";
 
@@ -9,7 +9,10 @@ import {Observable} from "rxjs";
 })
 export class TasksService {
   url = `${environment.backend}/boards`;
-  setUrl = `${environment.backend}/tasksSet`
+  setUrl = `${environment.backend}/tasksSet`;
+  headers: HttpHeaders = new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
 
   constructor(private http: HttpClient) { }
 
@@ -18,22 +21,27 @@ export class TasksService {
   }
 
   createTask(boardId: string, columnId: string, body: TaskType): Observable<any> {
-    return this.http.post<any>(`${this.generateTasksUrl(boardId, columnId)}`, body)
+    const headers = this.headers;
+    return this.http.post<any>(`${this.generateTasksUrl(boardId, columnId)}`, body, {headers})
   }
 
   getTasks(boardId: string, columnId: string): Observable<any> {
-    return this.http.get(`${this.generateTasksUrl(boardId, columnId)}`)
+    const headers = this.headers;
+    return this.http.get(`${this.generateTasksUrl(boardId, columnId)}`, {headers})
   }
 
   updateTasksSet(body: TaskBody[]) {
-    return this.http.patch(this.setUrl, body);
+    const headers = this.headers;
+    return this.http.patch(this.setUrl, body, {headers});
   }
 
   deleteTask(boardId: string, columnId: string, taskId: string) {
-    return this.http.delete(`${this.generateTasksUrl(boardId, columnId)}/${taskId}`)
+    const headers = this.headers;
+    return this.http.delete(`${this.generateTasksUrl(boardId, columnId)}/${taskId}`, {headers})
   }
 
   editTask(boardId: string, columnId: string, taskId: string, body: TaskType) {
-    return this.http.put(`${this.generateTasksUrl(boardId, columnId)}/${taskId}`, body)
+    const headers = this.headers;
+    return this.http.put(`${this.generateTasksUrl(boardId, columnId)}/${taskId}`, body, {headers})
   }
 }

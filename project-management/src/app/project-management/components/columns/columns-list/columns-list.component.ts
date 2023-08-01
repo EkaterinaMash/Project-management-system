@@ -39,7 +39,6 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
           .subscribe(value => {
             this.columns = value.slice().sort((a, b) => a.order - b.order);
           });
-        console.log(this.columns);
       });
   }
 

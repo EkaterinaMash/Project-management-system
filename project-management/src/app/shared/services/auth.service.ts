@@ -39,6 +39,7 @@ export class AuthService {
         localStorage.setItem('token', res.token);
         localStorage.setItem('expireTime', this.tokenExpireTime);
         localStorage.setItem('userLogin', user.login);
+        this.router.navigate(['boards']);
 
         setTimeout(() => {
           this.logout();

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ColumnType} from "../types/column-type.model";
 import {Observable} from "rxjs";
 
@@ -9,28 +9,36 @@ import {Observable} from "rxjs";
 })
 export class ColumnService {
   url = `${environment.backend}/boards`;
-  setUrl = `${environment.backend}/columnsSet`
+  setUrl = `${environment.backend}/columnsSet`;
+  headers: HttpHeaders = new HttpHeaders({
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
 
   constructor(private http: HttpClient) {
   }
 
   getColumns(boardId: string): Observable<ColumnType[]> {
-    return this.http.get<ColumnType[]>(`${this.url}/${boardId}/columns`);
+    const headers = this.headers;
+    return this.http.get<ColumnType[]>(`${this.url}/${boardId}/columns`, {headers});
   }
 
   createColumn(boardId: string, body: ColumnType): Observable<ColumnType> {
-    return this.http.post<ColumnType>(`${this.url}/${boardId}/columns`, body);
+    const headers = this.headers;
+    return this.http.post<ColumnType>(`${this.url}/${boardId}/columns`, body, {headers});
   }
 
   deleteColumn(boardId: string, columnId: string) {
-    return this.http.delete(`${this.url}/${boardId}/columns/${columnId}`);
+    const headers = this.headers;
+    return this.http.delete(`${this.url}/${boardId}/columns/${columnId}`, {headers});
   }
 
   updateColumnsSet(body: ColumnType[]) {
-    return this.http.patch(this.setUrl, body);
+    const headers = this.headers;
+    return this.http.patch(this.setUrl, body, {headers});
   }
 
   updateColumn(boardId: string, columnId: string, body: ColumnType) {
-    return this.http.put(`${this.url}/${boardId}/columns/${columnId}`, body);
+    const headers = this.headers;
+    return this.http.put(`${this.url}/${boardId}/columns/${columnId}`, body, {headers});
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Observable} from "rxjs";
+import {AuthService} from "../../../../shared/services/auth.service";
 
 @Component({
   selector: 'app-navigation',
@@ -7,5 +8,11 @@ import {Observable} from "rxjs";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
-  isLoggedIn$: Observable<boolean>;
+
+  constructor(private authService: AuthService) {
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn;
+  }
 }
