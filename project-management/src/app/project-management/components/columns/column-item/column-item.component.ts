@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
 import {Input} from "@angular/core";
 import {ColumnType} from "../../../../shared/types/column-type.model";
 import {GeneralState} from "../../../../store/state.model";
@@ -90,7 +90,7 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
       moveItemInArray(currentTasksList, previousIndex, currentIndex);
       this.changeTasksOrderInColumn(currentIndex, previousIndex, currentTasksList);
     } else {
-      this.currentColumnId = currentTasksList[0].columnId;
+      this.currentColumnId = event.container.element.nativeElement.closest('.container')?.id;
 
       transferArrayItem(
         previousTasksList,

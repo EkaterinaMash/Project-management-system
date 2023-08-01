@@ -9,7 +9,8 @@
         *ngFor="let column of columns"
         [inputColumn]="column"
         cdkDrag
-        (deleteColumnEvent)="deleteColumn($event)">
+        (deleteColumnEvent)="deleteColumn($event)"
+      >
       </app-column-item>
     </div>
     <button mat-button (click)="createColumn()" class="create-column-button">{{"columns.create" | translate}}</button>
