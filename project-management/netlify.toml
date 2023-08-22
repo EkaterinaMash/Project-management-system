@@ -1,4 +1,4 @@
 [[redirects]]
-from = "/project-management/dist/project-management/"
-to = "/project-management/dist/project-management/index.html"
+from = "/*"
+to = "/index.html"
 status = 200
