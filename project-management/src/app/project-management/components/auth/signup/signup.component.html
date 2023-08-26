@@ -1,0 +1,28 @@
+<form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="form-container">
+  <mat-form-field>
+    <mat-label>{{"form.name" | translate}}</mat-label>
+    <input matInput name="name" formControlName="name">
+  </mat-form-field>
+  <mat-error *ngIf="authForm.get('name').hasError('minlength') ||
+                    authForm.get('name').hasError('maxlength')">
+    {{"error.name"| translate}}
+  </mat-error>
+  <mat-form-field>
+    <mat-label>{{"form.login" | translate}}</mat-label>
+    <input matInput name="login" formControlName="login">
+    <mat-error *ngIf="authForm.get('login').hasError('minlength') ||
+                      authForm.get('login').hasError('maxlength')">
+      {{"error.login"| translate}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{"form.password" | translate}}</mat-label>
+    <input matInput name="password" formControlName="password" type="password">
+    <mat-error *ngIf="authForm.get('password').hasError('minlength') ||
+                      authForm.get('password').hasError('maxlength')">
+      {{"error.password"| translate}}
+    </mat-error>
+  </mat-form-field>
+  <button type="submit" mat-button [disabled]="authForm.invalid">{{"auth.signup"| translate}}</button>
+</form>
+

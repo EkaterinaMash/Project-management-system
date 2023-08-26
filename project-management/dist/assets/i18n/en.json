@@ -1,0 +1,73 @@
+{
+  "main": {
+    "header": "Project management system will help you to achieve your goals!",
+    "description": "With help of this app you can create your own projects, add tasks and manage their execution.",
+    "start": "Start!",
+    "register": "Register to start!",
+    "login": "Already registered?",
+    "author": "This app is created by ",
+    "task": " as an angular task ",
+    "course": " at UpSkillMe course"
+  },
+  "author": "Ekaterina Mashinskaia",
+  "boards": {
+    "list": "All boards",
+    "create": "Create new board",
+    "delete": "Delete board"
+  },
+  "columns": {
+    "create": "Create new column",
+    "delete": "Delete column"
+  },
+  "tasks": {
+    "create": "Create new task",
+    "delete": "Delete task",
+    "edit": "Edit task",
+    "todo": "To do: ",
+    "description": "Description: "
+  },
+  "profile": {
+    "edit": "Edit profile",
+    "delete": "Delete user",
+    "info": "Profile information",
+    "name": "Name: ",
+    "login": "Login: "
+  },
+  "form": {
+    "title": "Title",
+    "description": "Description",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "close": "Close",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "auth": {
+    "login": "Log in",
+    "signup": "Sign up",
+    "logout": "Log out"
+  },
+  "footer": {
+    "created": "Created by ",
+    "year": " 2023"
+  },
+  "navigation": {
+    "main": "Main",
+    "boards": "Boards"
+  },
+  "modal": "Are you sure that use want to delete the ",
+  "error": {
+    "name": "The name length should be 5-15 letters",
+    "login": "The login length should be 5-15 letters",
+    "password": "The password length should be 7-15 letters",
+    "title": "The title length should be from 5 to 30 letters",
+    "description": "The description length should be from 10 to 50 letters."
+  }
+}

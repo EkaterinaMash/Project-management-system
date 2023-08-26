@@ -1,0 +1,11 @@
+<main>
+  <h3>{{"main.header" | translate}}</h3>
+  <p>{{"main.description" | translate}}</p>
+  <button mat-button (click)="clickStart()" *ngIf="!loggedOut">{{"main.start"| translate}}</button>
+  <p *ngIf="loggedOut">{{"main.register"| translate}}<a routerLink="/signup">{{"auth.signup" | translate}}</a>.</p>
+  <p *ngIf="loggedOut">{{"main.login" | translate}} <a routerLink="/login">{{"auth.login" | translate}}</a>!</p>
+  <p><span>{{"main.author"| translate}}</span>
+    <a href="https://github.com/EkaterinaMash">{{"author" | translate}}</a>
+    <span>{{"main.task"| translate}}</span>
+    <a href="https://rs.school/angular/">{{"main.course" | translate}}</a>.</p>
+</main>

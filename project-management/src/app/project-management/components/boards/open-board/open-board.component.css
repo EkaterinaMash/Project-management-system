@@ -1,0 +1,9 @@
+mat-card {
+  padding: 2rem;
+}
+
+mat-card:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=open-board.component.css.map */

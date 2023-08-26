@@ -1,0 +1,22 @@
+<ng-container>
+  <div class="columns-container">
+    <div class="columns-list"
+         cdkDropList
+         cdkDropListGroup
+         cdkDropListOrientation="horizontal"
+         (cdkDropListDropped)="dropColumn($event)">
+      <app-column-item
+        *ngFor="let column of columns"
+        [inputColumn]="column"
+        cdkDrag
+        (deleteColumnEvent)="deleteColumn($event)"
+      >
+      </app-column-item>
+    </div>
+    <button mat-button (click)="createColumn()" class="create-column-button">{{"columns.create" | translate}}</button>
+  </div>
+</ng-container>
+
+
+
+

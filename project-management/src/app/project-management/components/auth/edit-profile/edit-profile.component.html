@@ -1,0 +1,47 @@
+<ng-container>
+  <mat-card *ngIf="!editMode">
+    <mat-card-title>{{"profile.info" | translate}}</mat-card-title>
+    <mat-card-content>
+      <p>{{"profile.name"| translate}}<span>{{this.currentUser.name}}</span></p>
+      <p>{{"profile.login" | translate}}<span>{{this.currentUser.login}}</span></p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="toggleEditMode()">{{"buttons.edit"| translate}}</button>
+      <button mat-button (click)="deleteUser()">{{"profile.delete"| translate}}</button>
+      <button mat-button (click)="close()">{{"buttons.close"| translate}}</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card *ngIf="editMode">
+    <form action="" [formGroup]="editForm">
+      <mat-form-field>
+        <mat-label>{{"form.name"| translate}}</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf=
+                     "editForm.get('name').hasError('minlength') ||editForm.get('name').hasError('maxlength')">
+          {{"error.name"| translate}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{"form.login"| translate}}</mat-label>
+        <input matInput formControlName="login">
+        <mat-error *ngIf=
+                     "editForm.get('login').hasError('minlength') ||editForm.get('login').hasError('maxlength')">
+          {{"error.login"| translate}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{"form.password"| translate}}</mat-label>
+        <input matInput formControlName="password" type="password">
+        <mat-error *ngIf=
+                     "editForm.get('password').hasError('minlength') ||editForm.get('password').hasError('maxlength')">
+          {{"error.password"| translate}}
+        </mat-error>
+      </mat-form-field>
+      <button mat-button type="submit" (click)="saveChanges()">{{"buttons.save"| translate}}</button>
+    </form>
+    <mat-card-actions>
+      <button mat-button (click)="toggleEditMode()">{{"buttons.close"| translate}}</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

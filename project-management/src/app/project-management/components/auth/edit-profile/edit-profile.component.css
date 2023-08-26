@@ -1,0 +1,17 @@
+mat-card {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+mat-card-title {
+  align-self: center;
+}
+
+form {
+  display: grid;
+  gap: 2rem;
+  max-width: 28rem;
+}
+
+/*# sourceMappingURL=edit-profile.component.css.map */

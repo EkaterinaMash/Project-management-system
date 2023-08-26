@@ -1,0 +1,11 @@
+.root-container {
+  height: 95vh;
+  display: grid;
+  overflow-y: hidden;
+}
+
+app-footer {
+  align-self: end;
+}
+
+/*# sourceMappingURL=app.component.css.map */

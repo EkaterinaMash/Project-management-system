@@ -1,0 +1,9 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+  height: 4rem;
+}
+
+/*# sourceMappingURL=footer.component.css.map */

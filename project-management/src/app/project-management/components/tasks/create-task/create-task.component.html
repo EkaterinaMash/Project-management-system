@@ -1,0 +1,26 @@
+<ng-container>
+  <div class="form-container">
+    <h4>{{"tasks.create"| translate}}</h4>
+    <form [formGroup]="createTaskForm" class="form">
+      <mat-form-field>
+        <mat-label>{{"form.title"| translate}}</mat-label>
+        <input matInput formControlName="title">
+        <mat-error
+          *ngIf="createTaskForm.get('title').hasError('minlength') ||
+               createTaskForm.get('title').hasError('maxlength')">
+          {{"error.title"| translate}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{"form.description"| translate}}</mat-label>
+        <input matInput formControlName="description">
+        <mat-error
+          *ngIf="createTaskForm.get('description').hasError('minlength') ||
+               createTaskForm.get('description').hasError('maxlength')">
+          {{"error.description"| translate}}
+        </mat-error>
+      </mat-form-field>
+      <button mat-button type="submit" [disabled]="createTaskForm.invalid" (click)="onSubmit()">{{"buttons.submit"| translate}}</button>
+    </form>
+  </div>
+</ng-container>

@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  width: 30rem;
+  justify-content: space-evenly;
+  align-items: center;
+  @media (max-width: 720px) {
+    width: 20rem;
+  }
+}
+
+a {
+  display: block;
+  font-size: 1.6rem;
+}

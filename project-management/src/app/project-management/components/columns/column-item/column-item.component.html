@@ -1,0 +1,47 @@
+<ng-container>
+  <div >
+    <mat-card>
+      <div class="column-title">
+        <mat-card-title *ngIf="!editMode" (click)="toggleEditMode()">{{column?.title}}</mat-card-title>
+        <form action="" *ngIf="editMode" [formGroup]="editTitleForm">
+          <mat-form-field>
+            <mat-label>{{"form.title"| translate}}</mat-label>
+            <input matInput formControlName="title">
+            <mat-error
+              *ngIf="editTitleForm.get('title').hasError('minlength') ||
+               editTitleForm.get('title').hasError('maxlength')">
+              {{"error.title"| translate}}
+            </mat-error>
+          </mat-form-field>
+          <div class="form-buttons">
+            <button mat-button type="submit" (click)="editColumnTitle()" [disabled]="editTitleForm.invalid">{{"buttons.submit" | translate}}</button>
+            <button mat-button (click)="toggleEditMode()">{{"buttons.cancel"| translate}}</button>
+          </div>
+        </form>
+      </div>
+
+      <mat-card-content>
+        <div  [attr.id]="columnId" class="container">
+          <div
+            class="tasks-list"
+            cdkDropList
+            [cdkDropListData]="currentColumnTasks"
+            (cdkDropListDropped)="dropTask($event)">
+            <app-task-item
+              *ngFor="let task of currentColumnTasks"
+              [taskInput]="task" [columnId]="columnId"
+              cdkDrag
+              (deleteTaskEvent)="deleteTask($event)">
+            </app-task-item>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="column-buttons">
+        <button mat-button (click)="createTask()">{{"tasks.create" | translate}}</button>
+        <button mat-button (click)="deleteColumn()" class="delete-button">{{"columns.delete" | translate}}</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-container>
+

@@ -1,0 +1,17 @@
+.modal-container {
+  display: grid;
+  padding: 2rem;
+  justify-items: center;
+}
+
+.buttons-container {
+  display: flex;
+  width: 10rem;
+  justify-content: space-around;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=modal.component.css.map */

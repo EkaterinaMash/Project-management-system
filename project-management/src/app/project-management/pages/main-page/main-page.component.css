@@ -1,0 +1,22 @@
+main {
+  margin: 1.5rem;
+  height: 80%;
+}
+
+button {
+  font-size: 1.8rem;
+  background-color: cadetblue;
+  color: whitesmoke !important;
+  border-radius: 1.5rem;
+  width: 9rem;
+}
+
+p {
+  margin: 1rem 0 1rem 0;
+}
+
+a {
+  color: cadetblue;
+}
+
+/*# sourceMappingURL=main-page.component.css.map */

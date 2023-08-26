@@ -1,0 +1,19 @@
+<form [formGroup]="loginForm" class="form-container">
+  <mat-form-field>
+    <mat-label>{{"form.login" | translate}}</mat-label>
+    <input matInput name="login" formControlName="login">
+    <mat-error *ngIf="loginForm.get('login').hasError('minlength') ||
+                      loginForm.get('login').hasError('maxlength')">
+      {{"error.login"| translate}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{"form.password" | translate}}</mat-label>
+    <input matInput name="password" formControlName="password" type="password">
+    <mat-error *ngIf=
+                 "loginForm.get('password').hasError('minlength') ||loginForm.get('password').hasError('maxlength')">
+      {{"error.password"| translate}}
+    </mat-error>
+  </mat-form-field>
+  <button type="submit" mat-button (click)="logIn()">{{"auth.login" | translate}}</button>
+</form>

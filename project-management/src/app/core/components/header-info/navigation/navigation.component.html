@@ -1,0 +1,6 @@
+<nav>
+  <div class="navigation">
+    <a routerLink = "/main" routerLinkActive="active">{{"navigation.main"| translate}}</a>
+    <a routerLink="/boards" routerLinkActive="active" *ngIf="isLoggedIn()">{{"navigation.boards"| translate}}</a>
+  </div>
+</nav>

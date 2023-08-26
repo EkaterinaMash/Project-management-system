@@ -1,0 +1,28 @@
+<ng-container>
+  <div class="form-container">
+    <h4>{{"tasks.edit" | translate}}</h4>
+    <form [formGroup]="editTaskForm" class="form">
+      <mat-form-field>
+        <mat-label>{{"form.title"| translate}}</mat-label>
+        <input matInput formControlName="title">
+        <mat-error
+          *ngIf="editTaskForm.get('title').hasError('minlength') ||
+               editTaskForm.get('title').hasError('maxlength')">
+          {{"error.title"| translate}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{"form.description"| translate}}</mat-label>
+        <input matInput formControlName="description">
+        <mat-error
+          *ngIf="editTaskForm.get('description').hasError('minlength') ||
+               editTaskForm.get('description').hasError('maxlength')">
+          {{"error.description"| translate}}
+        </mat-error>
+      </mat-form-field>
+      <button mat-button type="submit" [disabled]="editTaskForm.invalid" (click)="onSubmit()">{{"buttons.submit" | translate}}</button>
+    </form>
+    <button mat-button mat-dialog-close>{{"buttons.close"| translate}}</button>
+  </div>
+</ng-container>
+

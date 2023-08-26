@@ -1,0 +1,51 @@
+html {
+  font-size: 10px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  padding: 1rem 2rem 1rem;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1.6rem;
+  background-color: whitesmoke !important;
+  max-height: 95vh;
+  overflow-y: hidden;
+}
+
+a {
+  text-decoration: none !important;
+  color: darkcyan !important;
+}
+
+p {
+  font-size: 1.6rem !important;
+}
+
+mat-card-content {
+  font-size: 1.6rem;
+}
+
+.form-container {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+  max-width: 40rem;
+  h4 {
+    margin: 1rem;
+  }
+  form {
+    display: grid;
+    gap: 1.8rem;
+  }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

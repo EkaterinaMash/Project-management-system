@@ -1,0 +1,9 @@
+<ng-container>
+  <mat-card>
+    <mat-card-title (click)="editTask()">{{"tasks.todo" | translate}}<span>{{task.title}}</span></mat-card-title>
+    <mat-card-content (click)="editTask()">{{"tasks.description" | translate}}<span>{{task.description}}</span></mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="deleteTask()" class="delete-button">{{"tasks.delete" | translate}}</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

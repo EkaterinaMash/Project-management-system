@@ -1,0 +1,26 @@
+<div class="header">
+  <div class="burger-container">
+    <div class="burger-menu" (click)="burgerMenuToggle()">
+      <img src="../../../../assets/icons/ui.png" alt="Burger menu">
+    </div>
+    <div *ngIf="burgerOpened" class="burger-items">
+      <app-language-toggle></app-language-toggle>
+      <app-navigation (click)="burgerMenuToggle()"></app-navigation>
+      <button mat-button (click)="burgerMenuToggle()">{{"buttons.close"| translate}}</button>
+    </div>
+  </div>
+
+  <div class="navigation-container">
+    <app-language-toggle></app-language-toggle>
+    <app-navigation></app-navigation>
+  </div>
+
+  <div>
+    <app-sign-up *ngIf="!checkUserLogged()"></app-sign-up>
+    <app-log-in *ngIf="!checkUserLogged()"></app-log-in>
+    <app-edit-user *ngIf="checkUserLogged()"></app-edit-user>
+    <app-log-out *ngIf="checkUserLogged()"></app-log-out>
+  </div>
+</div>
+
+
